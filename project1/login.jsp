@@ -85,7 +85,7 @@
         else
         {
                 out.println("<H1><LEFT>Radiology Information System Login</LEFT></H1>");
-                out.println("<form method=post action=menu.html>");
+                out.println("<form method=post action=menu.jsp>");
                 out.println("UserName: <input type=text name=USERID maxlength=20><br>");
                 out.println("Password: <input type=password name=PASSWD maxlength=20><br>");
                 out.println("<input type=submit name=bSubmit value=Submit>");
