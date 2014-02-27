@@ -18,7 +18,7 @@
                 out.println("<input type=submit name=usermanagement value=USER_MANAGEMENT>");
                 out.println("</form>");
 
-                out.println("<form method=post action=menu.html>");
+                out.println("<form method=post action=report.html>");
                 out.println("<input type=submit name=reportgenerating value=REPORT_GENERATING>");
                 out.println("</form>");
 
