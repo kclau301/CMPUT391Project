@@ -2,7 +2,7 @@
 <HEAD>
 
 
-<TITLE>Your Login Result</TITLE>
+<TITLE>Radiology Information System Login</TITLE>
 </HEAD>
 
 <BODY>
@@ -17,10 +17,10 @@
         {
 
 	        //get the user input from the login page
-        	String userName = (request.getParameter("USERID")).trim();
-	        String passwd = (request.getParameter("PASSWD")).trim();
-        	//out.println("<p>Your input User Name is "+userName+"</p>");
-        	//out.println("<p>Your input password is "+passwd+"</p>");
+        	String username = (request.getParameter("USERID")).trim();
+	        String password = (request.getParameter("PASSWD")).trim();
+        	//out.println("<p>Your input User Name is "+username+"</p>");
+        	//out.println("<p>Your input password is "+password+"</p>");
 
 
 	        //establish the connection to the underlying database
@@ -53,7 +53,7 @@
 	        //select the user table from the underlying db and validate the user name and password
         	Statement stmt = null;
 	        ResultSet rset = null;
-        	String sql = "select PWD from login where id = '"+userName+"'";
+        	String sql = "select PWD from login where id = '"+username+"'";
 	        out.println(sql);
         	try{
 	        	stmt = conn.createStatement();
@@ -70,10 +70,10 @@
 	        	truepwd = (rset.getString(1)).trim();
 	
         	//display the result
-	        if(passwd.equals(truepwd))
+	        if(password.equals(truepwd))
 		        out.println("<p><b>Your Login is Successful!</b></p>");
         	else
-	        	out.println("<p><b>Either your userName or Your password is inValid!</b></p>");
+	        	out.println("<p><b>Either your username or Your password is inValid!</b></p>");
 
                 try{
                         conn.close();
@@ -86,9 +86,13 @@
         {
                 out.println("<H1><LEFT>Radiology Information System Login</LEFT></H1>");
                 out.println("<form method=post action=menu.jsp>");
-                out.println("UserName: <input type=text name=USERID maxlength=20><br>");
-                out.println("Password: <input type=password name=PASSWD maxlength=20><br>");
-                out.println("<input type=submit name=bSubmit value=Submit>");
+                out.println("<table>");
+                out.println("<tr><th>Username:</th>");
+                out.println("<td><input type=text name=USERID maxlength=20></td></tr>");
+                out.println("<tr><th>Password:</th>");
+                out.println("<td><input type=password name=PASSWD maxlength=20></td></tr>");
+                out.println("<tr><td><input type=submit name=bSubmit value=Submit></td></tr>");
+                out.println("</table>");
                 out.println("</form>");
         }      
 %>
