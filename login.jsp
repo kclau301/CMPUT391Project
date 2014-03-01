@@ -10,44 +10,20 @@
     connect and query a database. 
     @author  Hong-Yu Zhang, University of Alberta
  -->
-<%@ page import="java.sql.*" %>
+<%@ page import="java.sql.*, Db.Database" %>
 <%
  
         if(request.getParameter("bSubmit") != null)
         {
+
+            Database db = new Database();
+            Connection conn = db.getConnection();
 
 	        //get the user input from the login page
         	String username = (request.getParameter("USERID")).trim();
 	        String password = (request.getParameter("PASSWD")).trim();
         	//out.println("<p>Your input User Name is "+username+"</p>");
         	//out.println("<p>Your input password is "+password+"</p>");
-
-
-	        //establish the connection to the underlying database
-        	Connection conn = null;
-	
-	        String driverName = "oracle.jdbc.driver.OracleDriver";
-            	String dbstring = "jdbc:oracle:thin:@gwynne.cs.ualberta.ca:1521:CRS";
-
-   	        try{
-		        //load and register the driver
-        		Class drvClass = Class.forName(driverName); 
-	        	DriverManager.registerDriver((Driver) drvClass.newInstance());
-        	}
-	        catch(Exception ex){
-		        out.println("<hr>" + ex.getMessage() + "<hr>");
-	
-	        }
-	
-        	try{
-	        	//establish the connection 
-		        conn = DriverManager.getConnection(dbstring,"your_user_id","your_pass_word");
-        		conn.setAutoCommit(false);
-	        }
-        	catch(Exception ex){
-	        
-		        out.println("<hr>" + ex.getMessage() + "<hr>");
-        	}
 	
 
 	        //select the user table from the underlying db and validate the user name and password
