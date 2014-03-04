@@ -14,7 +14,7 @@
 <%
  
                 out.println("<H1><LEFT>Radiology Information System Menu</LEFT></H1>");
-                out.println("<form method=post action=menu.html>");
+                out.println("<form method=post action=userManagementMenu.html>");
                 out.println("<input type=submit name=usermanagement value=USER_MANAGEMENT>");
                 out.println("</form>");
 
