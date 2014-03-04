@@ -22,7 +22,7 @@
                 out.println("<input type=submit name=reportgenerating value=REPORT_GENERATING>");
                 out.println("</form>");
 
-                out.println("<form method=post action=menu.html>");
+                out.println("<form method=post action=uploadStart.html>");
                 out.println("<input type=submit name=upload value=UPLOAD>");
                 out.println("</form>");
 
