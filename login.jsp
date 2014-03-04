@@ -49,7 +49,7 @@
 	        response.setHeader("Refresh", "3;url=menu.jsp");
 	        //response.sendRedirect("menu.jsp");
 	    } else {
-	    	out.println("<p><b>Either your username or Your password is inValid!</b></p>");
+	    	out.println("<p><b>Either your username or your password is invalid!</b></p>");
         	response.setHeader("Refresh", "3;url=login.jsp");
         	//response.sendRedirect("login.jsp");
 		}

@@ -1,5 +1,15 @@
+<%@ page import="java.io.*,java.util.*,java.sql.*"%>
+<%@ page import="javax.servlet.http.*,javax.servlet.*" %>
+<%@taglib  uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
+
 <html>
 <body> 
+
+<sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
+	url="jdbc:mysql://http://localhost:8080/project1/reportResult.jsp"
+    user="[user]"  password="[pw]"/>
+
 	Results for patients with 
 		<%
 		String iDiag = 	request.getParameter("DiagnosisInput");
@@ -11,11 +21,26 @@
 		out.print(iDate);
 		%>
 	:
-</body>
+
+	<sql:query dataSource="${snapshot}" var="result">
+	SELECT * FROM persons 
+	</sql:query>
+
+
 <table border="1">
 <tr> <th>Last Name</th> <th> First Name </th> <th>Address</th> <th>Phone Number</th> <th>Testing Date</th> </tr>
 <tr> <td>Gates</td> <td> Bill </td> <td>555 Street</td> <td> 555 333 2345</td> <td>05-23-13</td> </tr>
+<c:forEach var="row" items="${result.rows}">
+<tr>
+<td><c:out value="${row.last_name}"/></td>
+<td><c:out value="${row.first_name}"/></td>
+<td><c:out value="${row.address}"/></td>
+<td><c:out value="${row.phone}"/></td>
+<td><c:out value="${row.test_date}"/></td>
+</tr>
+</c:forEach>
 </table> 
+</body>
 </html> 
 
 <!-- SQL: 
