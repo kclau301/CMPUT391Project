@@ -12,15 +12,15 @@ public class Database {
 	public Database() {
 		conn = null;
 		// TODO: add username/password details once we setup the account
-		username = "";
-		password = "";
+		username = "tyleung";
+		password = "cmput391";
 	}
 
     public void connect() {
    		String driverName = "oracle.jdbc.driver.OracleDriver";
    		// Use this dbstring to connect to the campus databases from home
-   		String dbstring = "jdbc:oracle:thin:@localhost:1525:CRS";
-    	//String dbstring = "jdbc:oracle:thin:@gwynne.cs.ualberta.ca:1521:CRS";
+   		//String dbstring = "jdbc:oracle:thin:@localhost:1525:CRS";
+    	String dbstring = "jdbc:oracle:thin:@gwynne.cs.ualberta.ca:1521:CRS";
 
     	try {
 			//load and register the driver

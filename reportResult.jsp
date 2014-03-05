@@ -3,12 +3,28 @@
 <title>Report Regeneration</title> 
 <body> 
 <H1><LEFT>Report Regeneration</LEFT></H1>
-<sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
-	url="jdbc:mysql://http://localhost:8080/project1/reportResult.jsp"
-    user="[user]"  password="[pw]"/> 
+
 
 	Results for patients with 
+		<%@ page import="java.sql.*, db.Database" %>
 		<%
+		Database db = new Database();
+		db.connect();
+		Connection conn = db.getConnection();
+		Statement stmt = null;
+        ResultSet rset = null;
+    	String sql = "select * from persons";
+    	try {
+        	stmt = conn.createStatement();
+	        rset = stmt.executeQuery(sql);
+    	} catch(Exception e) {
+	        out.println("<hr>" + e.getMessage() + "<hr>");
+    	}
+    	
+    	while(rset != null && rset.next()) {
+        	out.println(rset.getString(0));
+        }
+    	
 		String iDiag = 	request.getParameter("DiagnosisInput");
 		String iDate = 	request.getParameter("DateInput");
 		out.print(iDiag);
@@ -18,10 +34,6 @@
 		out.print(iDate);
 		%>
 	:
-
-	<sql:query dataSource="${snapshot}" var="result">
-	SELECT * FROM persons 
-	</sql:query>
 
 
 <table border="1">
