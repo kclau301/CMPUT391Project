@@ -1,0 +1,9 @@
+ROOT/
+proj1/
+docs/
+examples/
+host-manager/
+manager/
+bin/
+.project
+.classpath
