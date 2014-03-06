@@ -29,14 +29,6 @@
 	        out.println("<hr>" + e.getMessage() + "<hr>");
     	}
 
-    	
-    	while(rset != null && rset.next()) {
-        	out.println(rset.getString(0));
-        }
-    	
-		String iDiag = 	request.getParameter("DiagnosisInput");
-		String iDate = 	request.getParameter("DateInput");
-
 		out.print(iDiag);
 		%>
 	on
@@ -54,7 +46,6 @@
         	out.println(rset.getString(3));
         	out.println(rset.getString(4));
         	out.println(rset.getString(5));
-        	out.println("\n");
         }
         %>
 	
