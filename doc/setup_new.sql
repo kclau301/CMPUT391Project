@@ -94,4 +94,6 @@ INSERT INTO persons (person_id, first_name, last_name, address, email, phone) VA
 
 INSERT INTO radiology_record (record_id, patient_id, test_date, diagnosis) VALUES (23, 1, to_date('2013', 'YYYY'), 'cancer');
 
+
 INSERT INTO radiology_record (record_id, patient_id, test_date, diagnosis) VALUES (24, 2, to_date('2013', 'YYYY'), 'cancer');
+

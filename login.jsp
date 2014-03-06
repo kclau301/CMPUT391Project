@@ -20,7 +20,9 @@
         //select the user table from the underlying db and validate the user name and password
     	Statement stmt = null;
         ResultSet rset = null;
+
     	String sql = "select password from users where user_name = '"+ username +"'";
+
     	try {
         	stmt = conn.createStatement();
 	        rset = stmt.executeQuery(sql);

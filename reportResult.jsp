@@ -11,6 +11,7 @@
 		Database db = new Database();
 		db.connect();
 		Connection conn = db.getConnection();
+
 		
 		Statement stmt = null;
         ResultSet rset = null;
@@ -20,12 +21,22 @@
 		
 		//TODO: still need to implement matching dates together!!!
     	String sql = "select p.last_name, p.first_name, p.address, p.phone, r.test_date from persons p, radiology_record r where p.person_id = r.patient_id AND '"+ iDiag +"' = r.diagnosis ORDER BY p.last_name";
+
     	try {
         	stmt = conn.createStatement();
 	        rset = stmt.executeQuery(sql);
     	} catch(Exception e) {
 	        out.println("<hr>" + e.getMessage() + "<hr>");
     	}
+
+    	
+    	while(rset != null && rset.next()) {
+        	out.println(rset.getString(0));
+        }
+    	
+		String iDiag = 	request.getParameter("DiagnosisInput");
+		String iDate = 	request.getParameter("DateInput");
+
 		out.print(iDiag);
 		%>
 	on
@@ -33,6 +44,7 @@
 		out.print(iDate);
 		%>
 	:
+
 	
 	<%
 	    while(rset != null && rset.next()) {
