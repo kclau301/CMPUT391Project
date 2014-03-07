@@ -21,7 +21,8 @@
     	Statement stmt = null;
         ResultSet rset = null;
 
-    	String sql = "select password from users where user_name = '"+ username +"'";
+    	String sql = "select password, class from users where user_name = '"+ username +"'";
+
 
     	try {
         	stmt = conn.createStatement();
@@ -30,8 +31,10 @@
 	        out.println("<hr>" + e.getMessage() + "<hr>");
     	}
         String truepwd = "";
+        String userClass = "";
     	while(rset != null && rset.next()) {
         	truepwd = (rset.getString(1)).trim();
+            userClass = (rset.getString(2));
         }
 
 		// Close the database connection

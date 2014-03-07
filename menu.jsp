@@ -12,7 +12,10 @@
  -->
 <%@ page import="java.sql.*" %>
 <%
+
+ String checkClass = request.getParameter("userClass");
  
+ if (checkClass == "a"){
                 out.println("<H1><LEFT>Radiology Information System Menu</LEFT></H1>");
                 out.println("<form method=post action=userManagementMenu.html>");
                 out.println("<input type=submit name=usermanagement value=USER_MANAGEMENT>");
@@ -33,6 +36,58 @@
                 out.println("<form method=post action=menu.html>");
                 out.println("<input type=submit name=dataanalysis value=DATA_ANALYSIS>");
                 out.println("</form>");
+}
+ else if (checkClass == "p"){
+                out.println("<H1><LEFT>Radiology Information System Menu</LEFT></H1>");
+
+                out.println("<form method=post action=menu.html>");
+                out.println("<input type=submit name=search value=SEARCH>");
+                out.println("</form>");
+}
+
+ else if (checkClass == "d"){
+                out.println("<H1><LEFT>Radiology Information System Menu</LEFT></H1>");
+
+                out.println("<form method=post action=menu.html>");
+                out.println("<input type=submit name=search value=SEARCH>");
+                out.println("</form>");
+}
+
+ else if (checkClass == "r"){
+                out.println("<H1><LEFT>Radiology Information System Menu</LEFT></H1>");
+
+                out.println("<form method=post action=uploadStart.html>");
+                out.println("<input type=submit name=upload value=UPLOAD>");
+                out.println("</form>");
+
+                out.println("<form method=post action=menu.html>");
+                out.println("<input type=submit name=search value=SEARCH>");
+                out.println("</form>");
+}
+
+ else {
+                out.println("<H1><LEFT>Radiology Information System Menu</LEFT></H1>");
+                out.println("<form method=post action=userManagementMenu.html>");
+                out.println("<input type=submit name=usermanagement value=USER_MANAGEMENT>");
+                out.println("</form>");
+
+                out.println("<form method=post action=report.html>");
+                out.println("<input type=submit name=reportgenerating value=REPORT_GENERATING>");
+                out.println("</form>");
+
+                out.println("<form method=post action=uploadStart.html>");
+                out.println("<input type=submit name=upload value=UPLOAD>");
+                out.println("</form>");
+
+                out.println("<form method=post action=menu.html>");
+                out.println("<input type=submit name=search value=SEARCH>");
+                out.println("</form>");
+
+                out.println("<form method=post action=menu.html>");
+                out.println("<input type=submit name=dataanalysis value=DATA_ANALYSIS>");
+                out.println("</form>");
+}
+
 %>
 
 </BODY>
