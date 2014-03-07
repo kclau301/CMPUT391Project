@@ -7,57 +7,58 @@
 
 <%@ page import="java.sql.*, db.Database" %>
 <%
-	if(request.getParameter("bSubmit") != null) {
+    if(request.getParameter("bSubmit") != null) {
 
         Database db = new Database();
         db.connect();
         Connection conn = db.getConnection();
 
         //get the user input from the login page
-    	String username = (request.getParameter("USERID")).trim();
+        String username = (request.getParameter("USERID")).trim();
         String password = (request.getParameter("PASSWD")).trim();
 
         //select the user table from the underlying db and validate the user name and password
-    	Statement stmt = null;
+        Statement stmt = null;
         ResultSet rset = null;
 
-    	String sql = "select password, class from users where user_name = '"+ username +"'";
+        String sql = "select password, class from users where user_name = '"+ username +"'";
 
-
-    	try {
-        	stmt = conn.createStatement();
-	        rset = stmt.executeQuery(sql);
-    	} catch(Exception e) {
-	        out.println("<hr>" + e.getMessage() + "<hr>");
-    	}
+        try {
+            stmt = conn.createStatement();
+            rset = stmt.executeQuery(sql);
+        } catch(Exception e) {
+            out.println("<hr>" + e.getMessage() + "<hr>");
+        }
         String truepwd = "";
         String userClass = "";
-    	while(rset != null && rset.next()) {
-        	truepwd = (rset.getString(1)).trim();
-            userClass = (rset.getString(2));
+        
+        while(rset != null && rset.next()) {
+            truepwd = (rset.getString(1)).trim();
+            userClass = rset.getString(2);
         }
 
-		// Close the database connection
-		db.close();
-		try {
-			stmt.close();
-        	rset.close();
-        }
-        catch(Exception e) {
-        	out.println("<hr>" + e.getMessage() + "<hr>");
+    session.setAttribute("class", userClass);
+
+        // Close the database connection
+        db.close();
+        try {
+            stmt.close();
+            rset.close();
+        } catch(Exception e) {
+            out.println("<hr>" + e.getMessage() + "<hr>");
         }
 
-    	//display the result
-        if(password.equals(truepwd)) {
-	        out.println("<p><b>Your Login is Successful!</b></p>");
-	        response.setHeader("Refresh", "3;url=menu.jsp");
-	        //response.sendRedirect("menu.jsp");
-	    } else {
-	    	out.println("<p><b>Either your username or your password is invalid!</b></p>");
-        	response.setHeader("Refresh", "3;url=login.jsp");
-        	//response.sendRedirect("login.jsp");
-		}
-		
+        //display the result
+        if(password.equals(truepwd) && !username.equals("")) {
+            out.println("<p><b>Your Login is Successful!</b></p>");
+            response.setHeader("Refresh", "3;url=menu.jsp");
+            //response.sendRedirect("menu.jsp");
+        } else {
+            out.println("<p><b>Either your username or your password is invalid!</b></p>");
+            response.setHeader("Refresh", "3;url=login.jsp");
+            //response.sendRedirect("login.jsp");
+        }
+        
         
 
     } 
@@ -71,6 +72,8 @@
         out.println("<td><input type=password name=PASSWD maxlength=20></td></tr>");
         out.println("<tr><td><input type=submit name=bSubmit value=Submit></td></tr>");       
         out.println("</table>");
+
+
         out.println("</form>");
         
     }
