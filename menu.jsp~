@@ -19,23 +19,23 @@ String checkClass = (String) session.getAttribute("class");
 
                 out.println("<H1><LEFT>Radiology Information System Menu</LEFT></H1>");
                 out.println("<form method=post action=userManagementMenu.jsp>");
-                out.println("<input type=submit name=usermanagement value=User&nbsp;Management>");
+                out.println("<input type=submit name=usermanagement value=USER_MANAGEMENT>");
                 out.println("</form>");
 
                 out.println("<form method=post action=report.html>");
-                out.println("<input type=submit name=reportgenerating value=Report&nbsp;Generating>");
+                out.println("<input type=submit name=reportgenerating value=REPORT_GENERATING>");
                 out.println("</form>");
 
                 out.println("<form method=post action=uploadStart.html>");
-                out.println("<input type=submit name=upload value=Upload>");
+                out.println("<input type=submit name=upload value=UPLOAD>");
                 out.println("</form>");
 
                 out.println("<form method=post action=menu.html>");
-                out.println("<input type=submit name=search value=Search>");
+                out.println("<input type=submit name=search value=SEARCH>");
                 out.println("</form>");
 
                 out.println("<form method=post action=menu.html>");
-                out.println("<input type=submit name=dataanalysis value=Data&nbsp;Analysis>");
+                out.println("<input type=submit name=dataanalysis value=DATA_ANALYSIS>");
                 out.println("</form>");
 }
 else if (checkClass.equals("p")){
