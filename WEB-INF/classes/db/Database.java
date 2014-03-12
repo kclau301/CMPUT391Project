@@ -3,6 +3,7 @@ package db;
 import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -15,7 +16,6 @@ public class Database {
 
 	public Database() {
 		conn = null;
-		// TODO: add username/password details once we setup the account
 		username = "tyleung";
 		password = "cmput391";
 	}
@@ -41,13 +41,14 @@ public class Database {
 		} catch (Exception e) {
 			System.out.println("<hr>" + e.getMessage() + "<hr>");
 		}
+		
 	}
 
 	public Connection getConnection() {
 		return conn;
 	}
 
-	public void close(Connection conn, Statement stmt, ResultSet rset) {
+	public void close(Connection conn, Statement stmt, PreparedStatement pstmt, ResultSet rset) {
 		if (conn != null) {
 			try {
 				conn.close();
@@ -58,6 +59,13 @@ public class Database {
 		if (stmt != null) {
 			try {
 				stmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		if (pstmt != null) {
+			try {
+				pstmt.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

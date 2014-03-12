@@ -35,7 +35,7 @@
 				out.println("<hr>" + e.getMessage() + "<hr>");
 			} finally {
 				// Close the database connection
-				db.close(conn, stmt, rset);
+				db.close(conn, stmt, null, rset);
 			}
 
 			session.setAttribute("class", userClass);

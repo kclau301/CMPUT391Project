@@ -1,5 +1,5 @@
 
-<%@ page import="java.sql.*, db.Database"%>
+<%@ page import="java.sql.*, java.util.ArrayList, db.Database"%>
 <%
 	String username = (String) session.getAttribute("username");
 	Database db = new Database();
@@ -12,7 +12,7 @@
 	String sql_users = "select password from users where user_name = '"
 			+ username + "'";
 
-	int id;
+	int id = 0;
 	String fname = "";
 	String lname = "";
 	String address = "";
@@ -44,20 +44,22 @@
 		out.println("<hr>" + e.getMessage() + "<hr>");
 	} finally {
 		// Close the database connection
-		db.close(conn, stmt, rset);
+		db.close(conn, stmt, null, rset);
 	}
+
+	session.setAttribute("curr_id", id);
 %>
 <html>
 <head>
 <title>User Information</title>
 </head>
 <body>
-	<form method=post action=modifyAccount.jsp>
+	<form method=post action=ModifyAccountCheck>
 		<table>
 			<tr>
 				<th>First Name:</th>
 				<td><input type="text" name="fname" maxlength="24"
-					required="required" value="<%out.println(fname);%>"></td>
+					value="<%out.println(fname);%>"></td>
 			</tr>
 			<tr>
 				<th>Last Name:</th>
@@ -93,5 +95,12 @@
 			</tr>
 		</table>
 	</form>
+	<%
+		String error = (String) session.getAttribute("error");
+		if (error != null && error != "") {
+			out.println(error);
+			session.removeAttribute("error");
+		}
+	%>
 </body>
 </html>
