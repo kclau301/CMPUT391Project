@@ -16,10 +16,10 @@
         ResultSet rset = null;
         
         String iDiag =     request.getParameter("DiagnosisInput");
-        String iDate =     request.getParameter("DateInput");
+        String iDate1 =     request.getParameter("DateInput1");
+    String iDate2 =     request.getParameter("DateInput2");
         
-        //TODO: still need to implement matching dates together!!!
-        String sql = "select p.last_name, p.first_name, p.address, p.phone, r.test_date from persons p, radiology_record r where p.person_id = r.patient_id AND '"+ iDiag +"' = r.diagnosis ORDER BY p.last_name";
+        String sql = "select p.last_name, p.first_name, p.address, p.phone, r.test_date from persons p, radiology_record r where p.person_id = r.patient_id AND '"+ iDiag +"' = r.diagnosis AND r.test_date between to_date('"+ iDate1 +"', 'DD/MM/YYYY') AND to_date('"+ iDate2 +"', 'MM/DD/YYYY') ORDER BY p.last_name";
 
         try {
             stmt = conn.createStatement();
@@ -30,10 +30,14 @@
 
         out.print(iDiag);
         %>
-    on
+    from
         <%
-        out.print(iDate);
+        out.print(iDate1);
         %>
+    to
+    <%
+    out.print(iDate2);
+    %>
     :    
 
 <table border="1">
@@ -54,12 +58,3 @@
 </table> 
 </body>
 </html>
-
-<!-- SQL: 
-select p.last_name, p.first_name, p.address, p.phone, r.test_date
-from persons p, radiology_record r
-where p.person_id = r.patient_id 
-	AND [diagnosis] = r.diagnosis
-	AND [date] = r.test_date
-ORDER BY p.last_name
- -->
