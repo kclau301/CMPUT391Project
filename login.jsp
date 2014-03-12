@@ -44,7 +44,7 @@
 			if (password.equals(truepwd) && !username.equals("")) {
 				out.println("<p><b>Your Login is Successful!</b></p>");
 				session.setAttribute("username", username);
-				response.setHeader("Refresh", "3;url=modifyAccount.jsp");
+				response.setHeader("Refresh", "3;url=menu.jsp");
 				//response.sendRedirect("menu.jsp");
 			} else {
 				String error = "<p><b><font color=ff0000>Either your username or your password is invalid!</font></b></p>";

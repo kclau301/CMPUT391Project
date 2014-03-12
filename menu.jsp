@@ -37,6 +37,10 @@ String checkClass = (String) session.getAttribute("class");
                 out.println("<form method=post action=menu.html>");
                 out.println("<input type=submit name=dataanalysis value=Data&nbsp;Analysis>");
                 out.println("</form>");
+
+                out.println("<form method=post action=modifyAccount.jsp>");
+                out.println("<input type=submit name=modifyaccount value=Modify&nbsp;Account>");
+                out.println("</form>");
 }
 else if (checkClass.equals("p")){
 
@@ -44,6 +48,10 @@ else if (checkClass.equals("p")){
 
                 out.println("<form method=post action=menu.html>");
                 out.println("<input type=submit name=search value=SEARCH>");
+                out.println("</form>");
+
+                out.println("<form method=post action=modifyAccount.jsp>");
+                out.println("<input type=submit name=modifyaccount value=Modify&nbsp;Account>");
                 out.println("</form>");
 }
 
@@ -53,6 +61,10 @@ else if (checkClass.equals("d")){
 
                 out.println("<form method=post action=menu.html>");
                 out.println("<input type=submit name=search value=SEARCH>");
+                out.println("</form>");
+
+                out.println("<form method=post action=modifyAccount.jsp>");
+                out.println("<input type=submit name=modifyaccount value=Modify&nbsp;Account>");
                 out.println("</form>");
 }
 
@@ -68,16 +80,20 @@ else if (checkClass.equals("r")){
                 out.println("<form method=post action=menu.html>");
                 out.println("<input type=submit name=search value=SEARCH>");
                 out.println("</form>");
+
+                out.println("<form method=post action=modifyAccount.jsp>");
+                out.println("<input type=submit name=modifyaccount value=Modify&nbsp;Account>");
+                out.println("</form>");
 }
 
  else {
                 out.println("<H1><LEFT>Radiology Information System Menu</LEFT></H1>");
                 out.println("<form method=post action=userManagementMenu.jsp>");
-                out.println("<input type=submit name=usermanagement value=USER_MANAGEMENT>");
+                out.println("<input type=submit name=usermanagement value=USER&nbsp;MANAGEMENT>");
                 out.println("</form>");
 
                 out.println("<form method=post action=report.html>");
-                out.println("<input type=submit name=reportgenerating value=REPORT_GENERATING>");
+                out.println("<input type=submit name=reportgenerating value=REPORT&nbsp;GENERATING>");
                 out.println("</form>");
 
                 out.println("<form method=post action=uploadStart.html>");
@@ -89,7 +105,11 @@ else if (checkClass.equals("r")){
                 out.println("</form>");
 
                 out.println("<form method=post action=menu.html>");
-                out.println("<input type=submit name=dataanalysis value=DATA_ANALYSIS>");
+                out.println("<input type=submit name=dataanalysis value=DATA&nbsp;ANALYSIS>");
+                out.println("</form>");
+
+                out.println("<form method=post action=modifyAccount.jsp>");
+                out.println("<input type=submit name=modifyaccount value=Modify&nbsp;Account>");
                 out.println("</form>");
 }
 

@@ -10,9 +10,9 @@
 <%@ page import="java.sql.*" %>
 <%
 
-//String checkClass = (String) session.getAttribute("class");
+String checkClass = (String) session.getAttribute("class");
 
- //if (checkClass.equals("a")){
+ if (checkClass.equals("a")){
 
                 out.println("<H1><LEFT>User Management Menu</LEFT></H1>");
                 out.println("<form method=get action=searchUserManagement.jsp>");
@@ -29,12 +29,13 @@
                 out.println("<input type=submit name=CREATEUSER value=Create>");
                 out.println("</form>");
 
-//}
+}
 
 
-//else {
-
-//}
+else {
+	out.println("<H1><LEFT><font color=ff0000>ACCESS DENIED</font></LEFT></H1>");
+	response.setHeader("Refresh", "3;url=menu.jsp");
+}
 
 %>
 
