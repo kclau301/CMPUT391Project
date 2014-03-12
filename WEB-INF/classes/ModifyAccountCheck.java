@@ -32,7 +32,7 @@ public class ModifyAccountCheck extends HttpServlet {
 		String error_msg = "";
 		boolean error = false;
 
-		curr_id = (int) session.getAttribute("curr_id");
+		curr_id = (Integer) session.getAttribute("curr_id");
 		String fname = request.getParameter("fname");
 		String lname = request.getParameter("lname");
 		String address = request.getParameter("address");
