@@ -1,0 +1,30 @@
+<html>
+<head> 
+<title>Search</title> 
+</head>
+<body> 
+<H1><LEFT>Search</LEFT></H1>
+<form name="sResult" method="post" action="searchResult.jsp">
+Enter keywords
+<input type="textfield" name="searchKeyword" size="30"></input>
+
+and/or time period (Format: DD/MM/YYYY) between
+
+<input name="searchTime1" type="textfield" size="30"></input>
+
+and
+
+
+<input name="searchTime2" type="textfield" size="30"></input>
+
+
+<p>Select sorting method:</p>
+        <input type="radio" name="SEARCHTYPE" value="recentFirst">Most Recent First<br>
+        <input type="radio" name="SEARCHTYPE" value="recentLast">Most Recent Last<br>
+        <input type="radio" name="SEARCHTYPE" value="relavent">Most Relevant<br> 
+                <input type="submit" name="SEARCHDATA" value="Search"> 
+                </form>
+
+
+</BODY>
+</HTML>

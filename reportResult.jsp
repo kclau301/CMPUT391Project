@@ -19,7 +19,7 @@
         String iDate1 =     request.getParameter("DateInput1");
     String iDate2 =     request.getParameter("DateInput2");
         
-        String sql = "select p.last_name, p.first_name, p.address, p.phone, r.test_date from persons p, radiology_record r where p.person_id = r.patient_id AND '"+ iDiag +"' = r.diagnosis AND r.test_date between to_date('"+ iDate1 +"', 'DD/MM/YYYY') AND to_date('"+ iDate2 +"', 'MM/DD/YYYY') ORDER BY p.last_name";
+        String sql = "select p.last_name, p.first_name, p.address, p.phone, r.test_date from persons p, radiology_record r where p.person_id = r.patient_id AND '"+ iDiag +"' = r.diagnosis AND r.test_date between to_date('"+ iDate1 +"', 'DD/MM/YYYY') AND to_date('"+ iDate2 +"', 'DD/MM/YYYY') ORDER BY p.last_name";
 
         try {
             stmt = conn.createStatement();

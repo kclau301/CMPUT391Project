@@ -18,10 +18,11 @@
 			Connection conn = db.getConnection();
 			Statement stmt = null;
 			ResultSet rset = null;
-			String sql = "select password, class from users where user_name = '"
+			String sql = "select password, class, person_id from users where user_name = '"
 					+ username + "'";
 			String truepwd = "";
 			String userClass = "";
+			String pID = "";
 
 			try {
 				stmt = conn.createStatement();
@@ -30,6 +31,7 @@
 				while (rset != null && rset.next()) {
 					truepwd = (rset.getString(1)).trim();
 					userClass = rset.getString(2);
+					pID = rset.getString(3);
 				}
 			} catch (Exception e) {
 				out.println("<hr>" + e.getMessage() + "<hr>");
@@ -43,6 +45,7 @@
 				out.println("<p><b>Your Login is Successful!</b></p>");
 				session.setAttribute("username", username);
 				session.setAttribute("class", userClass);
+				session.setAttribute("person_id", pID);
 				response.setHeader("Refresh", "3;url=menu.jsp");
 				//response.sendRedirect("menu.jsp");
 			} else {
