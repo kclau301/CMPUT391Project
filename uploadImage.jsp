@@ -1,44 +1,37 @@
 <html>
-<title> Upload Image </title>
-<body> 
-<H1><LEFT>Upload Image</LEFT></H1>
+<title>Upload Image</title>
+<body>
+	<H1>Upload Image</H1>
 
-
-	Insert image for radiology record ID 
-		<%
-		String iDiag = 	request.getParameter("RadiologyRecord");
-		out.print(iDiag);
-		%>
-	:
-
-<hr>
-Please input or select the path of the image:
-<form name="upload-image" method="POST" enctype="multipart/form-data" action="servlet/UploadImage">
-<table>
-  <tr>
-    <th>File path: </th>
-    <td><input name="file-path" type="file" size="30" ></input></td>
-  </tr>
-  <tr>
-    <td ALIGN=CENTER COLSPAN="2"><input type="submit" name=".submit" 
-     value="Upload"></td>
-  </tr>
-</table>
-</form>
+	<form name="upload-image" method="POST" enctype="multipart/form-data"
+		action="UploadImage">
+		<table>
+			<tr>
+				<th>Radiology Record ID:</th>
+				<td><input name="recordID" type="text" pattern="[0-9]+"
+					title="ID number"></td>
+			</tr>
+		</table>
+		Please input or select the path of the image:
+		<table>
+			<tr>
+				<th>File path:</th>
+				<td><input name="file-path" type="file" size="30"></input></td>
+			</tr>
+			<tr>
+				<td ALIGN=LEFT COLSPAN="2"><input type="submit" name="Isubmit"
+					value="Upload"></td>
+			</tr>
+		</table>
+	</form>
+	<%
+		String error = (String) session.getAttribute("msg");
+		if (error != null) {
+			out.println(error);
+			session.removeAttribute("msg");
+		}
+	%>
 
 </body>
-</html> 
+</html>
 
-<!--
-	The following can be used to insert an image of BLOB type into an Oracle database.
-
-Note that (1) the table in the database is created by
-      CREATE TABLE pictures (
-            pic_id int,
-	    pic_desc  varchar(100),
-	    pic  BLOB,
-	    primary key(pic_id)
-      )
-(2) an SQL sequence in the database is created by
-   CREATE SEQUENCE pic_id_sequence
-   -->
