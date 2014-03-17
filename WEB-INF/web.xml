@@ -5,22 +5,5 @@
  http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
  version="2.4">
 
-    <servlet>
-        <servlet-name>ModifyAccountCheck</servlet-name>
-        <servlet-class>ModifyAccountCheck</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ModifyAccountCheck</servlet-name>
-        <url-pattern>/ModifyAccountCheck</url-pattern>
-    </servlet-mapping>
-    
-    <servlet>
-        <servlet-name>UploadImage</servlet-name>
-        <servlet-class>UploadImage</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>UploadImage</servlet-name>
-        <url-pattern>/UploadImage</url-pattern>
-    </servlet-mapping>
 
 </web-app>
