@@ -38,12 +38,11 @@
 				db.close(conn, stmt, null, rset);
 			}
 
-			session.setAttribute("class", userClass);
-
 			//display the result
 			if (password.equals(truepwd) && !username.equals("")) {
 				out.println("<p><b>Your Login is Successful!</b></p>");
 				session.setAttribute("username", username);
+				session.setAttribute("class", userClass);
 				response.setHeader("Refresh", "3;url=menu.jsp");
 				//response.sendRedirect("menu.jsp");
 			} else {
