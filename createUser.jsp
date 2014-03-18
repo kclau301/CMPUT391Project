@@ -21,11 +21,10 @@ String checkClass = (String) session.getAttribute("class");
 		out.println("Username: <input type=text name=USERNAME maxlength=20><br>");
 		out.println("Password: <input type=text name=PASSWORD maxlength=20><br>");
 		out.println("Class: <input type=text name=CLASS maxlength=20><br>");
-		        out.println("Person ID: <input type=text name=PERSONID maxlength=20><br>");
-		        out.println("<input type=submit name=create value=Create&nbsp;User>");
-				out.println("<input type=hidden name=user value=Create&nbsp;User>");
-
-                out.println("</form>");
+		out.println("Person ID: <input type=text name=PERSONID maxlength=20><br>");
+		out.println("<input type=submit name=create value=Create&nbsp;User>");
+		out.println("<input type=hidden name=user value=Create&nbsp;User>");
+		out.println("</form>");
 
 	}else if (request.getParameter("CREATETYPE").equals("Person")) {
                 out.println("<H1><LEFT>Person Creation</LEFT></H1>");
@@ -36,16 +35,16 @@ String checkClass = (String) session.getAttribute("class");
 		out.println("Email: <input type=text name=EMAIL maxlength=30><br>");
 		out.println("Phone: <input type=text name=PHONE maxlength=10><br>");
                 out.println("<input type=submit name=create value=Create&nbsp;Person>");
-				out.println("<input type=hidden name=person value=Create&nbsp;Person>");
+		out.println("<input type=hidden name=person value=Create&nbsp;Person>");
+		out.println("</form>");
 
-                out.println("</form>");
 	} else if (request.getParameter("CREATETYPE").equals("FamilyDoctor")) {
                 out.println("<H1><LEFT>Family Doctor Creation</LEFT></H1>");
                 out.println("<form method=post action=createSubmit.jsp>");
 		out.println("Doctor ID: <input type=text name=DOCID maxlength=20><br>");
 		out.println("Patient ID: <input type=text name=PATID maxlength=20><br>");
                 out.println("<input type=submit name=create value=Create&nbsp;Family&nbsp;Doctor>");
-				out.println("<input type=hidden name=famdoc value=Create&nbsp;Family&nbsp;Doctor>");
+		out.println("<input type=hidden name=famdoc value=Create&nbsp;Family&nbsp;Doctor>");
                 out.println("</form>");
 	} else {
 		out.println("<form method=get action=createUser.jsp>");
