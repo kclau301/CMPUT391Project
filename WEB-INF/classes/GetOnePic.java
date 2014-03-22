@@ -28,13 +28,15 @@ public class GetOnePic extends HttpServlet {
 		String image_id = request.getQueryString();
 		String sql;
 
-		if (image_id.startsWith("regular")) {
+		if (image_id.startsWith("thumbnail")) {
+			sql = "select thumbnail from pacs_images where image_id="
+					+ image_id.substring(9);
+		} else if (image_id.startsWith("regular")) {
 			sql = "select regular_size from pacs_images where image_id="
 					+ image_id.substring(7);
 		} else {
 			sql = "select full_size from pacs_images where image_id="
 					+ image_id;
-			sql = "select full_size from pacs_images where image_id=5";
 		}
 
 		ServletOutputStream out = response.getOutputStream();

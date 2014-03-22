@@ -30,7 +30,7 @@ String checkClass = (String) session.getAttribute("class");
                 out.println("<input type=submit name=upload value=Upload>");
                 out.println("</form>");
 
-                out.println("<form method=post action=searchStart.html>");
+                out.println("<form method=post action=searchStart.jsp>");
                 out.println("<input type=submit name=search value=Search>");
                 out.println("</form>");
 
@@ -46,7 +46,7 @@ else if (checkClass.equals("p")){
 
                 out.println("<H1><LEFT>Radiology Information System Menu</LEFT></H1>");
 
-                out.println("<form method=post action=searchStart.html>");
+                out.println("<form method=post action=searchStart.jsp>");
                 out.println("<input type=submit name=search value=SEARCH>");
                 out.println("</form>");
 
@@ -59,7 +59,7 @@ else if (checkClass.equals("d")){
 
                 out.println("<H1><LEFT>Radiology Information System Menu</LEFT></H1>");
 
-                out.println("<form method=post action=searchStart.html>");
+                out.println("<form method=post action=searchStart.jsp>");
                 out.println("<input type=submit name=search value=SEARCH>");
                 out.println("</form>");
 
@@ -77,7 +77,7 @@ else if (checkClass.equals("r")){
                 out.println("<input type=submit name=upload value=UPLOAD>");
                 out.println("</form>");
 
-                out.println("<form method=post action=searchStart.html>");
+                out.println("<form method=post action=searchStart.jsp>");
                 out.println("<input type=submit name=search value=SEARCH>");
                 out.println("</form>");
 
@@ -100,7 +100,7 @@ else if (checkClass.equals("r")){
                 out.println("<input type=submit name=upload value=UPLOAD>");
                 out.println("</form>");
 
-                out.println("<form method=post action=searchStart.html>");
+                out.println("<form method=post action=searchStart.jsp>");
                 out.println("<input type=submit name=search value=SEARCH>");
                 out.println("</form>");
 
