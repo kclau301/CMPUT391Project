@@ -36,6 +36,7 @@
 
 		/*TODO: need to add into SQL how to get images of record*/
 		String sql = "select r.*, p.first_name, p.last_name ";
+
 		// Test sql for images:
 		// String sql = "select r.*, p.first_name, p.last_name, pi.image_id from radiology_record r FULL JOIN persons p ON r.patient_id = p.person_id FULL JOIN pacs_images pi ON pi.record_id = r.record_id where ";
 
@@ -390,7 +391,7 @@
 							image_id = (rset_images.getObject(1)).toString();
 
 							// specify the servlet when thumbnail is clicked
-							out.println("<a href=\"/CMPUT391/GetOnePic?regular"
+							out.println("<a href=\"/CMPUT391/viewImage.jsp?regular"
 									+ image_id + "\" target=" + "_blank" + ">");
 							// display the thumbnail
 							out.println("<img src=\"/CMPUT391/GetOnePic?thumbnail"
