@@ -33,7 +33,6 @@
 
 		String checkClass = (String) session.getAttribute("class");
 		String userID = (String) session.getAttribute("person_id");
-
 		out.println("<H1>Search</H1>");
 
 		/*TODO: need to add into SQL how to get images of record*/
@@ -70,7 +69,7 @@
 				if (i != wordList.length - 1)
 					sql = sql + "OR ";
 			}
-			sql = sql + "ORDER BY '" + SQLOrder + "'";
+			sql = sql + "ORDER BY " + SQLOrder;
 
 			/*
 			if (checkClass.equals("a")) {
@@ -160,10 +159,9 @@
 				&& !kTime2.equals("")) {
 			out.println("Records of time period between " + kTime1
 					+ " and " + kTime2);
-
 			sql = sql + class_id + "r.test_date between to_date('" + kTime1
 					+ "', 'DD/MM/YYYY') AND to_date('" + kTime2
-					+ "', 'DD/MM/YYYY') ORDER BY '" + SQLOrder + "'";
+					+ "', 'DD/MM/YYYY') ORDER BY " + SQLOrder;
 			/*
 			if (checkClass.equals("a")) {
 			sql = sql
@@ -216,7 +214,7 @@
 				if (i != wordList.length - 1)
 					sql = sql + "OR ";
 			}
-			sql = sql + "ORDER BY '" + SQLOrder + "'";
+			sql = sql + "ORDER BY " + SQLOrder;
 
 			/*
 			if (checkClass.equals("a")) {
