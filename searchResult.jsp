@@ -8,7 +8,7 @@
 				"recentLast")) {
 			SQLOrder = "r.test_date ASC";
 		} else if (request.getParameter("SEARCHTYPE").equals("relevant")) {
-			SQLOrder = "rank" ;
+			SQLOrder = "rank desc" ;
 			//SQL order by  Rank(record_id) = 6*frequency(patient_name) + 3*frequency(diagnosis) + frequency(description)
 		}
 	} else {
@@ -34,7 +34,6 @@
 		String userID = (String) session.getAttribute("person_id");
 		out.println("<H1>Search</H1>");
 
-		/*TODO: need to add into SQL how to get images of record*/
 		String sql = "select r.*, p.first_name, p.last_name ";
 
 		// Test sql for images:
@@ -55,12 +54,13 @@
 		if (kWord != "" && kTime1 != "" && kTime2 != "") {
 		sql = sql + ", ";
 		String[] wordList = kWord.split(" ");
-		int count_score = 0;
+		int matchNum = 0;
 		for (int i = 0; i < wordList.length; i++) {
-			sql = sql + "6*score("+ Integer.toString(count_score+3) +")+6*score("+ Integer.toString(count_score+4) +")+3*score("+ Integer.toString(count_score+1) +")+score("+ Integer.toString(count_score+2)+") ";
+			sql = sql + "6*score("+ Integer.toString(matchNum+1) +")+6*score("+ Integer.toString(matchNum+2) +")+3*score("+ Integer.toString(matchNum+3) +")+score("+ Integer.toString(matchNum+4)+") ";
 							
 			if (i != wordList.length - 1)
 				sql = sql + "+ ";
+			matchNum = matchNum + 4;
 		}
 		sql = sql + "as rank ";
 
@@ -68,21 +68,17 @@
 
 			out.println("Records for keyword(s): " + kWord
 					+ " between dates " + kTime1 + " and " + kTime2);
-			//String[] wordList = kWord.split(" ");
 
 			sql = sql + "r.test_date between to_date('" + kTime1
 					+ "', 'DD/MM/YYYY') AND to_date('" + kTime2
 					+ "', 'DD/MM/YYYY') AND ";
 
-			int count_contains = 0;
+			int countNum = 0;
 			for (int i = 0; i < wordList.length; i++) {
-				sql = sql + class_id + "r.DIAGNOSIS ='" + wordList[i]
-						+ "' or p.LAST_NAME = '" + wordList[i]
-						+ "' or p.first_name = '" + wordList[i]
-						+ "'or r.DESCRIPTION like '%" + wordList[i] + "%'";
+				sql = sql + class_id + "contains(r.diagnosis, '" + wordList[i] + "', "+ Integer.toString(countNum+3) +") > 0 OR contains(r.description, '" + wordList[i] + "', "+ Integer.toString(countNum+4) +") > 0 OR contains(p.first_name, '" + wordList[i] + "', "+ Integer.toString(countNum+1) +") > 0 OR contains(p.last_name, '" + wordList[i] + "', "+ Integer.toString(countNum+2) +") > 0 ";
 				if (i != wordList.length - 1)
 					sql = sql + "OR ";
-				count_contains += 4;
+				countNum = countNum + 4;
 			}
 			sql = sql + "ORDER BY " + SQLOrder;
 
@@ -224,23 +220,24 @@
 		out.println("Records matching keyword(s): " + kWord);
 		sql = sql + ", ";
 		String[] wordList = kWord.split(" ");
-		int count_score = 0;
+		int matchNum = 0;
 		for (int i = 0; i < wordList.length; i++) {
-			sql = sql + "6*score("+ Integer.toString(count_score+3) +")+6*score("+ Integer.toString(count_score+4) +")+3*score("+ Integer.toString(count_score+1) +")+score("+ Integer.toString(count_score+2)+") ";
+			sql = sql + "6*score("+ Integer.toString(matchNum+1) +")+6*score("+ Integer.toString(matchNum+2) +")+3*score("+ Integer.toString(matchNum+3) +")+score("+ Integer.toString(matchNum+4)+") ";
 							
 			if (i != wordList.length - 1)
 				sql = sql + "+ ";
+			matchNum = matchNum + 4;
 		}
-		sql = sql + " as rank ";
+		sql = sql + "as rank ";
 
 		sql = sql + "from radiology_record r FULL JOIN persons p ON r.patient_id = p.person_id where ";
-			//String[] wordList = kWord.split(" ");
-			int count_contains = 0;
+
+			int countNum = 0;
 			for (int i = 0; i < wordList.length; i++) {
-				sql = sql + class_id + "contains(r.diagnosis, '" + wordList[i] + "', "+ Integer.toString(count_contains+1) +") > 0 OR contains(r.description, '" + wordList[i] + "', "+ Integer.toString(count_contains+2) +") > 0 OR contains(p.first_name, '" + wordList[i] + "', "+ Integer.toString(count_contains+3) +") > 0 OR contains(p.last_name, '" + wordList[i] + "', "+ Integer.toString(count_contains+4) +") > 0 ";
+				sql = sql + class_id + "contains(r.diagnosis, '" + wordList[i] + "', "+ Integer.toString(countNum+3) +") > 0 OR contains(r.description, '" + wordList[i] + "', "+ Integer.toString(countNum+4) +") > 0 OR contains(p.first_name, '" + wordList[i] + "', "+ Integer.toString(countNum+1) +") > 0 OR contains(p.last_name, '" + wordList[i] + "', "+ Integer.toString(countNum+2) +") > 0 ";
 				if (i != wordList.length - 1)
 					sql = sql + "OR ";
-				count_contains += 4;
+				countNum = countNum + 4;
 			}
 			sql = sql + "ORDER BY " + SQLOrder;
 
