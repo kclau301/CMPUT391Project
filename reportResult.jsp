@@ -7,16 +7,22 @@
 	Results for patients with
 	<%@ page import="java.sql.*, db.Database"%>
 	<%
+		String iDiag = request.getParameter("DiagnosisInput");
+		String iDate1 = request.getParameter("DateInput1");
+		String iDate2 = request.getParameter("DateInput2");
+
+		if (iDiag == "" || iDate1 == "" || iDate2 == "") {
+		String error = "<p><b><font color=ff0000>You have not entered in all required parameters!</font></b></p>";
+		session.setAttribute("error", error);
+		response.sendRedirect("report.jsp");
+	}
+
 		Database db = new Database();
 		db.connect();
 		Connection conn = db.getConnection();
 
 		Statement stmt = null;
 		ResultSet rset = null;
-
-		String iDiag = request.getParameter("DiagnosisInput");
-		String iDate1 = request.getParameter("DateInput1");
-		String iDate2 = request.getParameter("DateInput2");
 
 		String sql = "select p.last_name, p.first_name, p.address, p.phone, r.test_date from persons p, radiology_record r where p.person_id = r.patient_id AND LOWER('"
 				+ iDiag

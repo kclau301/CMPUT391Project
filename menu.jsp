@@ -22,7 +22,7 @@ String checkClass = (String) session.getAttribute("class");
                 out.println("<input type=submit name=usermanagement value=User&nbsp;Management>");
                 out.println("</form>");
 
-                out.println("<form method=post action=report.html>");
+                out.println("<form method=post action=report.jsp>");
                 out.println("<input type=submit name=reportgenerating value=Report&nbsp;Generating>");
                 out.println("</form>");
 
@@ -92,7 +92,7 @@ else if (checkClass.equals("r")){
                 out.println("<input type=submit name=usermanagement value=USER&nbsp;MANAGEMENT>");
                 out.println("</form>");
 
-                out.println("<form method=post action=report.html>");
+                out.println("<form method=post action=report.jsp>");
                 out.println("<input type=submit name=reportgenerating value=REPORT&nbsp;GENERATING>");
                 out.println("</form>");
 
