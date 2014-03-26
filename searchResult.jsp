@@ -9,7 +9,6 @@
 			SQLOrder = "r.test_date ASC";
 		} else if (request.getParameter("SEARCHTYPE").equals("relevant")) {
 			SQLOrder = "rank desc" ;
-			//SQL order by  Rank(record_id) = 6*frequency(patient_name) + 3*frequency(diagnosis) + frequency(description)
 		}
 	} else {
 		String error = "<p><b><font color=ff0000>You have not entered any search order specifications!</font></b></p>";

@@ -34,7 +34,7 @@ String checkClass = (String) session.getAttribute("class");
                 out.println("<input type=submit name=search value=Search>");
                 out.println("</form>");
 
-                out.println("<form method=post action=menu.html>");
+                out.println("<form method=post action=analysisStart.jsp>");
                 out.println("<input type=submit name=dataanalysis value=Data&nbsp;Analysis>");
                 out.println("</form>");
 
