@@ -1,20 +1,31 @@
 
 <%
+	String kWord = request.getParameter("searchKeyword");
+	String kTime1 = request.getParameter("searchTime1");
+	String kTime2 = request.getParameter("searchTime2");
+
+	if (kWord == "" && kTime1 == "" || kWord == "" && kTime2 == "") {
+		String error = "<p><b><font color=ff0000>You have not entered in all required search parameters!</font></b></p>";
+		session.setAttribute("error", error);
+		response.sendRedirect("searchStart.jsp");
+		return;
+	}
+
 	String SQLOrder = "";
 	if (request.getParameter("SEARCHTYPE") != null) {
 		if (request.getParameter("SEARCHTYPE").equals("recentFirst")) {
 			SQLOrder = "r.test_date DESC";
-		} else if (request.getParameter("SEARCHTYPE").equals(
-				"recentLast")) {
+		} else if (request.getParameter("SEARCHTYPE").equals("recentLast")) {
 			SQLOrder = "r.test_date ASC";
 		} else if (request.getParameter("SEARCHTYPE").equals("relevant")) {
 			SQLOrder = "rank desc" ;
 		}
-	} else {
+	}
+	else {
 		String error = "<p><b><font color=ff0000>You have not entered any search order specifications!</font></b></p>";
 		session.setAttribute("error", error);
 		response.sendRedirect("searchStart.jsp");
-	}
+		}
 %>
 
 <HTML>
@@ -25,18 +36,11 @@
 <BODY>
 	<%@ page import="java.sql.*, db.Database"%>
 	<%
-		String kWord = request.getParameter("searchKeyword");
-		String kTime1 = request.getParameter("searchTime1");
-		String kTime2 = request.getParameter("searchTime2");
-
 		String checkClass = (String) session.getAttribute("class");
 		String userID = (String) session.getAttribute("person_id");
 		out.println("<H1>Search</H1>");
 
 		String sql = "select r.*, p.first_name, p.last_name ";
-
-		// Test sql for images:
-		// String sql = "select r.*, p.first_name, p.last_name, pi.image_id from radiology_record r FULL JOIN persons p ON r.patient_id = p.person_id FULL JOIN pacs_images pi ON pi.record_id = r.record_id where ";
 
 		String class_id = "";
 		if (checkClass.equals("a")) {
@@ -80,88 +84,6 @@
 				countNum = countNum + 4;
 			}
 			sql = sql + "ORDER BY " + SQLOrder;
-
-			/*
-			if (checkClass.equals("a")) {
-			String[] wordList = kWord.split(" ");
-			sql = sql + "test_date between to_date('"
-			//"select r.*, p.first_name, p.last_name from radiology_record r FULL JOIN persons p ON r.patient_id = p.person_id where test_date between to_date('"
-			+ kTime1 + "', 'DD/MM/YYYY') AND to_date('"
-			+ kTime2 + "', 'DD/MM/YYYY') AND ";
-
-			for (int i = 0; i < wordList.length; i++) {
-			sql = sql + "r.DIAGNOSIS ='" + wordList[i]
-			+ "' or p.LAST_NAME = '" + wordList[i]
-			+ "' or p.first_name = '" + wordList[i]
-			+ "'or r.DESCRIPTION like '%" + wordList[i]
-			+ "%'";
-			if (i != wordList.length - 1)
-			sql = sql + "OR ";
-			}
-			sql = sql + "ORDER BY '" + SQLOrder + "'";
-			}
-
-			else if (checkClass.equals("p")) {
-			String[] wordList = kWord.split(" ");
-			sql = sql + "test_date between to_date('"
-			//"select r.*, p.first_name, p.last_name from radiology_record r FULL JOIN persons p ON r.patient_id = p.person_id where test_date between to_date('"
-			+ kTime1 + "', 'DD/MM/YYYY') AND to_date('"
-			+ kTime2 + "', 'DD/MM/YYYY') AND ";
-
-			for (int i = 0; i < wordList.length; i++) {
-			sql = sql + "r.patient_id = '" + userID
-			+ "' AND r.DIAGNOSIS ='" + wordList[i]
-			+ "' or p.LAST_NAME = '" + wordList[i]
-			+ "' or p.first_name = '" + wordList[i]
-			+ "'or r.DESCRIPTION like '%" + wordList[i]
-			+ "%'";
-			if (i != wordList.length - 1)
-			sql = sql + "OR ";
-			}
-			sql = sql + "ORDER BY '" + SQLOrder + "'";
-			}
-
-			else if (checkClass.equals("d")) {
-			String[] wordList = kWord.split(" ");
-			sql = sql + "test_date between to_date('"
-			//"select r.*, p.first_name, p.last_name from radiology_record r FULL JOIN persons p ON r.patient_id = p.person_id where test_date between to_date('"
-			+ kTime1 + "', 'DD/MM/YYYY') AND to_date('"
-			+ kTime2 + "', 'DD/MM/YYYY') AND ";
-
-			for (int i = 0; i < wordList.length; i++) {
-			sql = sql + "r.doctor_id = '" + userID
-			+ "' AND r.DIAGNOSIS ='" + wordList[i]
-			+ "' or p.LAST_NAME = '" + wordList[i]
-			+ "' or p.first_name = '" + wordList[i]
-			+ "'or r.DESCRIPTION like '%" + wordList[i]
-			+ "%'";
-			if (i != wordList.length - 1)
-			sql = sql + "OR ";
-			}
-			sql = sql + "ORDER BY '" + SQLOrder + "'";
-			}
-
-			else if (checkClass.equals("r")) {
-			String[] wordList = kWord.split(" ");
-			sql = sql + "test_date between to_date('"
-			//"select r.*, p.first_name, p.last_name from radiology_record r FULL JOIN persons p ON r.patient_id = p.person_id where test_date between to_date('"
-			+ kTime1 + "', 'DD/MM/YYYY') AND to_date('"
-			+ kTime2 + "', 'DD/MM/YYYY') AND ";
-
-			for (int i = 0; i < wordList.length; i++) {
-			sql = sql + "r.radiologist_id = '" + userID
-			+ "' AND r.DIAGNOSIS ='" + wordList[i]
-			+ "' or p.LAST_NAME = '" + wordList[i]
-			+ "' or p.first_name = '" + wordList[i]
-			+ "'or r.DESCRIPTION like '%" + wordList[i]
-			+ "%'";
-			if (i != wordList.length - 1)
-			sql = sql + "OR ";
-			}
-			sql = sql + "ORDER BY '" + SQLOrder + "'";
-			}
-			 */
-
 		}
 
 		//no keyword entered
@@ -175,42 +97,6 @@
 			sql = sql + class_id + "r.test_date between to_date('" + kTime1
 					+ "', 'DD/MM/YYYY') AND to_date('" + kTime2
 					+ "', 'DD/MM/YYYY') ORDER BY " + SQLOrder;
-			/*
-			if (checkClass.equals("a")) {
-			sql = sql
-			//"select r.*, p.first_name, p.last_name from radiology_record r FULL JOIN persons p ON r.patient_id = p.person_id where test_date between to_date('"
-			+ kTime1 + "', 'DD/MM/YYYY') AND to_date('"
-			+ kTime2 + "', 'DD/MM/YYYY') ORDER BY '" + SQLOrder
-			+ "'";
-			}
-
-			else if (checkClass.equals("p")) {
-			sql = sql
-			//"select r.*, p.first_name, p.last_name from radiology_record r FULL JOIN persons p ON r.patient_id = p.person_id where '"
-			+ "r.patient_id = '" + userID
-			+ "' AND test_date between to_date('" + kTime1
-			+ "', 'DD/MM/YYYY') AND to_date('" + kTime2
-			+ "', 'DD/MM/YYYY') ORDER BY '" + SQLOrder + "'";
-			}
-
-			else if (checkClass.equals("d")) {
-			sql = sql
-			//"select r.*, p.first_name, p.last_name from radiology_record r FULL JOIN persons p ON r.patient_id = p.person_id where '"
-			+ "r.doctor_id = '" + userID
-			+ "'  AND test_date between to_date('" + kTime1
-			+ "', 'DD/MM/YYYY') AND to_date('" + kTime2
-			+ "', 'DD/MM/YYYY') ORDER BY '" + SQLOrder + "'";
-			}
-
-			else if (checkClass.equals("r")) {
-			sql = sql
-			//"select r.*, p.first_name, p.last_name from radiology_record r FULL JOIN persons p ON r.patient_id = p.person_id where '"
-			+ "r.radiologist_id = '" + userID
-			+ "' AND test_date between to_date('" + kTime1
-			+ "', 'DD/MM/YYYY') AND to_date('" + kTime2
-			+ "', 'DD/MM/YYYY') ORDER BY '" + SQLOrder + "'";
-			}
-			 */
 		}
 
 		//no time period entered
@@ -239,76 +125,6 @@
 				countNum = countNum + 4;
 			}
 			sql = sql + "ORDER BY " + SQLOrder;
-
-			/*
-			if (checkClass.equals("a")) {
-			//String[] wordList = kWord.split(" ");
-			//sql = "select r.*, p.first_name, p.last_name from radiology_record r FULL JOIN persons p ON r.patient_id = p.person_id where ";
-
-			for (int i = 0; i < wordList.length; i++) {
-			sql = sql + "r.DIAGNOSIS ='" + wordList[i]
-			+ "' or p.LAST_NAME = '" + wordList[i]
-			+ "' or p.first_name = '" + wordList[i]
-			+ "'or r.DESCRIPTION like '%" + wordList[i]
-			+ "%'";
-			if (i != wordList.length - 1)
-			sql = sql + "OR ";
-			}
-			sql = sql + "ORDER BY '" + SQLOrder + "'";
-			}
-
-			else if (checkClass.equals("p")) {
-			//String[] wordList = kWord.split(" ");
-			//sql = "select r.*, p.first_name, p.last_name from radiology_record r FULL JOIN persons p ON r.patient_id = p.person_id where ";
-
-			for (int i = 0; i < wordList.length; i++) {
-			sql = sql + "r.patient_id = '" + userID
-			+ "' AND r.DIAGNOSIS ='" + wordList[i]
-			+ "' or p.LAST_NAME = '" + wordList[i]
-			+ "' or p.first_name = '" + wordList[i]
-			+ "'or r.DESCRIPTION like '%" + wordList[i]
-			+ "%'";
-			if (i != wordList.length - 1)
-			sql = sql + "OR ";
-			}
-			sql = sql + "ORDER BY '" + SQLOrder + "'";
-			}
-
-			else if (checkClass.equals("d")) {
-			//String[] wordList = kWord.split(" ");
-			//sql = "select r.*, p.first_name, p.last_name from radiology_record r FULL JOIN persons p ON r.patient_id = p.person_id where ";
-
-			for (int i = 0; i < wordList.length; i++) {
-			sql = sql + "r.doctor_id = '" + userID
-			+ "' AND r.DIAGNOSIS ='" + wordList[i]
-			+ "' or p.LAST_NAME = '" + wordList[i]
-			+ "' or p.first_name = '" + wordList[i]
-			+ "'or r.DESCRIPTION like '%" + wordList[i]
-			+ "%'";
-			if (i != wordList.length - 1)
-			sql = sql + "OR ";
-			}
-			sql = sql + "ORDER BY '" + SQLOrder + "'";
-			}
-
-			else if (checkClass.equals("r")) {
-			//String[] wordList = kWord.split(" ");
-			//sql = "select r.*, p.first_name, p.last_name from radiology_record r FULL JOIN persons p ON r.patient_id = p.person_id where ";
-
-			for (int i = 0; i < wordList.length; i++) {
-			sql = sql + "r.radiologist_id = '" + userID
-			+ "' AND r.DIAGNOSIS ='" + wordList[i]
-			+ "' or p.LAST_NAME = '" + wordList[i]
-			+ "' or p.first_name = '" + wordList[i]
-			+ "'or r.DESCRIPTION like '%" + wordList[i]
-			+ "%'";
-			if (i != wordList.length - 1)
-			sql = sql + "OR ";
-			}
-			sql = sql + "ORDER BY '" + SQLOrder + "'";
-			}
-			 */
-
 		}
 
 		//neither entered 
