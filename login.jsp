@@ -4,6 +4,7 @@
 </HEAD>
 
 <BODY>
+<div style="float: right"><a href="help.html">Help</a></div>
 
 	<%@ page import="java.sql.*, db.Database"%>
 	<%

@@ -43,11 +43,9 @@ public class UploadImage extends HttpServlet {
 
 	@SuppressWarnings({ "unchecked", "deprecation" })
 	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-
+			HttpServletResponse response) throws ServletException, IOException {		
 		response_message = "";
 		HttpSession session = request.getSession();
-		// PrintWriter out = response.getWriter();
 		FileItem image_file = null;
 		int record_id = 0;
 		int image_id;
@@ -55,6 +53,13 @@ public class UploadImage extends HttpServlet {
 		OutputStream full_outstream = null;
 		OutputStream thumb_outstream = null;
 		OutputStream regular_outstream = null;
+		
+		// Check if there is any input in the record id field
+		if (request.getParameter("recordID") == null || request.getParameter("recordID").equals("")) {
+			response_message = "<p><font color=ff0000>No ID entered!</font></p>";
+			session.setAttribute("msg", response_message);
+			response.sendRedirect("uploadImage.jsp");
+		}
 
 		try {
 			// Parse the HTTP request to get the image stream
