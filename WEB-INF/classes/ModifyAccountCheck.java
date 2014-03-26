@@ -14,7 +14,9 @@ import javax.servlet.http.HttpSession;
 import db.Database;
 
 /**
- * Servlet implementation class ModifyAccountCheck
+ * Servlet implementation class ModifyAccountCheck. This servlet validates the
+ * user inputted data in the account modification form. If there are no errors,
+ * the update succeeds and the user is brought back to the main menu.
  */
 @SuppressWarnings("serial")
 public class ModifyAccountCheck extends HttpServlet {
@@ -47,7 +49,6 @@ public class ModifyAccountCheck extends HttpServlet {
 		try {
 			stmt = conn.createStatement();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -55,12 +56,12 @@ public class ModifyAccountCheck extends HttpServlet {
 		changeLName(lname);
 		changeAddress(address);
 		error = changeEmail(email); // Email has a unique constraint
-		if (error) {
+		if (error) { // Check is email is unique
 			error_msg += "<font color=ff0000>Email already exists!</font><br>";
 		}
 		changePhone(phone);
 		error = changePassword(old_password, new_password);
-		if (error) {
+		if (error) { // Check if password is entered correctly
 			error_msg += "<font color=ff0000>Incorrect old password!</font><br>";
 		}
 
@@ -71,11 +72,21 @@ public class ModifyAccountCheck extends HttpServlet {
 			session.setAttribute("error", error_msg);
 			response.sendRedirect("modifyAccount.jsp");
 		} else {
+			// Check if password has been updated
+			if (new_password.equals("")) {
+				out.println("Password not changed.<br>");
+			}
 			out.println("<font color=00bb00>Successfully updated user information.</font>");
 			response.setHeader("Refresh", "3;url=userManagementMenu.jsp");
 		}
 	}
 
+	/**
+	 * Update the user's first name
+	 * 
+	 * @param fname
+	 *            the first name
+	 */
 	private void changeFName(String fname) {
 		String sql = "update persons set first_name = '" + fname
 				+ "' where person_id = " + curr_id;
@@ -87,6 +98,12 @@ public class ModifyAccountCheck extends HttpServlet {
 		}
 	}
 
+	/**
+	 * Update the user's last name
+	 * 
+	 * @param lname
+	 *            the last name
+	 */
 	private void changeLName(String lname) {
 		String sql = "update persons set last_name = '" + lname
 				+ "' where person_id = " + curr_id;
@@ -98,6 +115,12 @@ public class ModifyAccountCheck extends HttpServlet {
 		}
 	}
 
+	/**
+	 * Update the user's address
+	 * 
+	 * @param address
+	 *            the address
+	 */
 	private void changeAddress(String address) {
 		String sql = "update persons set address = '" + address
 				+ "' where person_id = " + curr_id;
@@ -109,6 +132,13 @@ public class ModifyAccountCheck extends HttpServlet {
 		}
 	}
 
+	/**
+	 * Update the user's email
+	 * 
+	 * @param email
+	 *            the email
+	 * @return error False if the email is unique. True otherwise.
+	 */
 	private boolean changeEmail(String email) {
 		boolean error = false;
 		int count = 0;
@@ -128,8 +158,8 @@ public class ModifyAccountCheck extends HttpServlet {
 		if (count > 0) {
 			error = true;
 		} else {
-			sql = "update persons set email = '" + email + "' where person_id = "
-					+ curr_id;
+			sql = "update persons set email = '" + email
+					+ "' where person_id = " + curr_id;
 			try {
 				stmt.executeUpdate(sql);
 			} catch (SQLException e) {
@@ -140,6 +170,12 @@ public class ModifyAccountCheck extends HttpServlet {
 		return error;
 	}
 
+	/**
+	 * Update the user's phone
+	 * 
+	 * @param phone
+	 *            the phone number
+	 */
 	private void changePhone(String phone) {
 		String sql = "update persons set phone = '" + phone
 				+ "' where person_id = " + curr_id;
@@ -151,10 +187,19 @@ public class ModifyAccountCheck extends HttpServlet {
 		}
 	}
 
+	/**
+	 * Update the user's password
+	 * 
+	 * @param old_password
+	 *            the current password
+	 * @param new_password
+	 *            the new password
+	 * @return error False if there is no error. True otherwise.
+	 */
 	private boolean changePassword(String old_password, String new_password) {
 		boolean error = false;
 		// Only do an update if there is input in the new password field
-		if (new_password != "") {
+		if (!new_password.equals("")) {
 			String sql = "select password from users where person_id = "
 					+ curr_id;
 

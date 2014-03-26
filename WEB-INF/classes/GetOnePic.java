@@ -2,6 +2,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 import javax.servlet.ServletException;
@@ -13,15 +14,11 @@ import javax.servlet.http.HttpServletResponse;
 import db.Database;
 
 /**
- * Servlet implementation class GetOnePic
+ * Servlet implementation class GetOnePic. This servlet handles displaying the
+ * images on the page.
  */
 @SuppressWarnings("serial")
 public class GetOnePic extends HttpServlet {
-
-	private Database db = null;
-	private Connection conn = null;
-	private Statement stmt = null;
-	private ResultSet rset = null;
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
@@ -41,10 +38,14 @@ public class GetOnePic extends HttpServlet {
 
 		ServletOutputStream out = response.getOutputStream();
 
+		Database db = null;
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rset = null;
+
 		db = new Database();
 		db.connect();
 		conn = db.getConnection();
-
 		try {
 			stmt = conn.createStatement();
 			rset = stmt.executeQuery(sql);

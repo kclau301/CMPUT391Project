@@ -25,7 +25,9 @@ import org.apache.commons.fileupload.FileItem;
 import db.Database;
 
 /**
- * Servlet implementation class UploadImage
+ * Servlet implementation class UploadImage. This servlet handles the image
+ * uploading functionalities. It acquires the image from uploadImage.jsp and
+ * uploads the image into the database.
  */
 @SuppressWarnings({ "serial" })
 public class UploadImage extends HttpServlet {
@@ -45,7 +47,7 @@ public class UploadImage extends HttpServlet {
 
 		response_message = "";
 		HttpSession session = request.getSession();
-		//PrintWriter out = response.getWriter();
+		// PrintWriter out = response.getWriter();
 		FileItem image_file = null;
 		int record_id = 0;
 		int image_id;
@@ -153,7 +155,15 @@ public class UploadImage extends HttpServlet {
 		}
 	}
 
-	// shrink image by a factor of n, and return the shrinked image
+	/**
+	 * Shrink image by a factor of n, and return the shrunk image
+	 * 
+	 * @param image
+	 *            the image
+	 * @param n
+	 *            the shrinking factor
+	 * @return shrunkImage the shrunk image
+	 */
 	public static BufferedImage shrink(BufferedImage image, int n) {
 
 		int w = image.getWidth() / n;
@@ -168,6 +178,13 @@ public class UploadImage extends HttpServlet {
 		return shrunkImage;
 	}
 
+	/**
+	 * Checks to see if a valid record id has been entered.
+	 * 
+	 * @param record_id
+	 *            the record id
+	 * @return True if the id is valid. False otherwise.
+	 */
 	public boolean isValidID(int record_id) {
 		db = new Database();
 		db.connect();

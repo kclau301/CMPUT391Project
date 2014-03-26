@@ -15,17 +15,18 @@
 	if (request.getParameter("SEARCHTYPE") != null) {
 		if (request.getParameter("SEARCHTYPE").equals("recentFirst")) {
 			SQLOrder = "r.test_date DESC";
-		} else if (request.getParameter("SEARCHTYPE").equals("recentLast")) {
+		} else if (request.getParameter("SEARCHTYPE").equals(
+				"recentLast")) {
 			SQLOrder = "r.test_date ASC";
-		} else if (request.getParameter("SEARCHTYPE").equals("relevant")) {
-			SQLOrder = "rank desc" ;
+		} else if (request.getParameter("SEARCHTYPE")
+				.equals("relevant")) {
+			SQLOrder = "rank desc";
 		}
-	}
-	else {
+	} else {
 		String error = "<p><b><font color=ff0000>You have not entered any search order specifications!</font></b></p>";
 		session.setAttribute("error", error);
 		response.sendRedirect("searchStart.jsp");
-		}
+	}
 %>
 
 <HTML>
@@ -34,7 +35,7 @@
 </HEAD>
 
 <BODY>
-	<%@ page import="java.sql.*, db.Database"%>
+	<%@ page import="java.sql.*,db.Database"%>
 	<%
 		String checkClass = (String) session.getAttribute("class");
 		String userID = (String) session.getAttribute("person_id");
@@ -55,19 +56,24 @@
 
 		//both entered
 		if (kWord != "" && kTime1 != "" && kTime2 != "") {
-		sql = sql + ", ";
-		String[] wordList = kWord.split(" ");
-		int matchNum = 0;
-		for (int i = 0; i < wordList.length; i++) {
-			sql = sql + "6*score("+ Integer.toString(matchNum+1) +")+6*score("+ Integer.toString(matchNum+2) +")+3*score("+ Integer.toString(matchNum+3) +")+score("+ Integer.toString(matchNum+4)+") ";
-							
-			if (i != wordList.length - 1)
-				sql = sql + "+ ";
-			matchNum = matchNum + 4;
-		}
-		sql = sql + "as rank ";
+			sql = sql + ", ";
+			String[] wordList = kWord.split(" ");
+			int matchNum = 0;
+			for (int i = 0; i < wordList.length; i++) {
+				sql = sql + "6*score(" + Integer.toString(matchNum + 1)
+						+ ")+6*score(" + Integer.toString(matchNum + 2)
+						+ ")+3*score(" + Integer.toString(matchNum + 3)
+						+ ")+score(" + Integer.toString(matchNum + 4)
+						+ ") ";
 
-		sql = sql + "from radiology_record r FULL JOIN persons p ON r.patient_id = p.person_id where ";
+				if (i != wordList.length - 1)
+					sql = sql + "+ ";
+				matchNum = matchNum + 4;
+			}
+			sql = sql + "as rank ";
+
+			sql = sql
+					+ "from radiology_record r FULL JOIN persons p ON r.patient_id = p.person_id where ";
 
 			out.println("Records for keyword(s): " + kWord
 					+ " between dates " + kTime1 + " and " + kTime2);
@@ -78,7 +84,16 @@
 
 			int countNum = 0;
 			for (int i = 0; i < wordList.length; i++) {
-				sql = sql + class_id + "contains(r.diagnosis, '" + wordList[i] + "', "+ Integer.toString(countNum+3) +") > 0 OR contains(r.description, '" + wordList[i] + "', "+ Integer.toString(countNum+4) +") > 0 OR contains(p.first_name, '" + wordList[i] + "', "+ Integer.toString(countNum+1) +") > 0 OR contains(p.last_name, '" + wordList[i] + "', "+ Integer.toString(countNum+2) +") > 0 ";
+				sql = sql + class_id + "contains(r.diagnosis, '"
+						+ wordList[i] + "', "
+						+ Integer.toString(countNum + 3)
+						+ ") > 0 OR contains(r.description, '"
+						+ wordList[i] + "', "
+						+ Integer.toString(countNum + 4)
+						+ ") > 0 OR contains(p.first_name, '" + wordList[i]
+						+ "', " + Integer.toString(countNum + 1)
+						+ ") > 0 OR contains(p.last_name, '" + wordList[i]
+						+ "', " + Integer.toString(countNum + 2) + ") > 0 ";
 				if (i != wordList.length - 1)
 					sql = sql + "OR ";
 				countNum = countNum + 4;
@@ -92,7 +107,8 @@
 			out.println("Records of time period between " + kTime1
 					+ " and " + kTime2);
 
-			sql = sql + "from radiology_record r FULL JOIN persons p ON r.patient_id = p.person_id where ";
+			sql = sql
+					+ "from radiology_record r FULL JOIN persons p ON r.patient_id = p.person_id where ";
 
 			sql = sql + class_id + "r.test_date between to_date('" + kTime1
 					+ "', 'DD/MM/YYYY') AND to_date('" + kTime2
@@ -102,24 +118,38 @@
 		//no time period entered
 		else if (!kWord.equals("") && kTime1.equals("")
 				|| kTime2.equals("")) {
-		out.println("Records matching keyword(s): " + kWord);
-		sql = sql + ", ";
-		String[] wordList = kWord.split(" ");
-		int matchNum = 0;
-		for (int i = 0; i < wordList.length; i++) {
-			sql = sql + "6*score("+ Integer.toString(matchNum+1) +")+6*score("+ Integer.toString(matchNum+2) +")+3*score("+ Integer.toString(matchNum+3) +")+score("+ Integer.toString(matchNum+4)+") ";
-							
-			if (i != wordList.length - 1)
-				sql = sql + "+ ";
-			matchNum = matchNum + 4;
-		}
-		sql = sql + "as rank ";
+			out.println("Records matching keyword(s): " + kWord);
+			sql = sql + ", ";
+			String[] wordList = kWord.split(" ");
+			int matchNum = 0;
+			for (int i = 0; i < wordList.length; i++) {
+				sql = sql + "6*score(" + Integer.toString(matchNum + 1)
+						+ ")+6*score(" + Integer.toString(matchNum + 2)
+						+ ")+3*score(" + Integer.toString(matchNum + 3)
+						+ ")+score(" + Integer.toString(matchNum + 4)
+						+ ") ";
 
-		sql = sql + "from radiology_record r FULL JOIN persons p ON r.patient_id = p.person_id where ";
+				if (i != wordList.length - 1)
+					sql = sql + "+ ";
+				matchNum = matchNum + 4;
+			}
+			sql = sql + "as rank ";
+
+			sql = sql
+					+ "from radiology_record r FULL JOIN persons p ON r.patient_id = p.person_id where ";
 
 			int countNum = 0;
 			for (int i = 0; i < wordList.length; i++) {
-				sql = sql + class_id + "contains(r.diagnosis, '" + wordList[i] + "', "+ Integer.toString(countNum+3) +") > 0 OR contains(r.description, '" + wordList[i] + "', "+ Integer.toString(countNum+4) +") > 0 OR contains(p.first_name, '" + wordList[i] + "', "+ Integer.toString(countNum+1) +") > 0 OR contains(p.last_name, '" + wordList[i] + "', "+ Integer.toString(countNum+2) +") > 0 ";
+				sql = sql + class_id + "contains(r.diagnosis, '"
+						+ wordList[i] + "', "
+						+ Integer.toString(countNum + 3)
+						+ ") > 0 OR contains(r.description, '"
+						+ wordList[i] + "', "
+						+ Integer.toString(countNum + 4)
+						+ ") > 0 OR contains(p.first_name, '" + wordList[i]
+						+ "', " + Integer.toString(countNum + 1)
+						+ ") > 0 OR contains(p.last_name, '" + wordList[i]
+						+ "', " + Integer.toString(countNum + 2) + ") > 0 ";
 				if (i != wordList.length - 1)
 					sql = sql + "OR ";
 				countNum = countNum + 4;
@@ -162,6 +192,7 @@
 				conn = db.getConnection();
 				stmt = conn.createStatement();
 				rset = stmt.executeQuery(sql);
+				String curr_id = null;
 
 				while (rset != null && rset.next()) {
 					String recordID = (rset.getString(1));
