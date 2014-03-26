@@ -1,0 +1,74 @@
+select p.first_name, r.test_type, trunc(r.test_date, 'IW') as test_date, count(i.record_id) as image_count
+from persons p, radiology_record r, pacs_images i
+where p.person_id = r.patient_id AND r.record_id = i.record_id
+group by CUBE(p.first_name, r.test_type, test_date);
+
+select p.first_name, r.test_type, trunc(r.test_date, 'MM') as test_date, count(i.record_id) as image_count
+from persons p, radiology_record r, pacs_images i
+where p.person_id = r.patient_id AND r.record_id = i.record_id
+group by CUBE(p.first_name, r.test_type, test_date);
+
+select p.first_name, r.test_type, trunc(r.test_date, 'Y') as test_date, count(i.record_id) as image_count
+from persons p, radiology_record r, pacs_images i
+where p.person_id = r.patient_id AND r.record_id = i.record_id
+group by CUBE(p.first_name, r.test_type, test_date);
+
+select p.first_name, r.test_type, count(i.record_id) as image_count
+from persons p, radiology_record r, pacs_images i
+where p.person_id = r.patient_id AND r.record_id = i.record_id
+group by CUBE(p.first_name, r.test_type);
+
+select p.first_name, trunc(r.test_date, 'IW') as test_date, count(i.record_id) as image_count
+from persons p, radiology_record r, pacs_images i
+where p.person_id = r.patient_id AND r.record_id = i.record_id
+group by CUBE(p.first_name, test_date);
+
+select p.first_name, trunc(r.test_date, 'MM') as test_date, count(i.record_id) as image_count
+from persons p, radiology_record r, pacs_images i
+where p.person_id = r.patient_id AND r.record_id = i.record_id
+group by CUBE(p.first_name, test_date);
+
+select p.first_name, trunc(r.test_date, 'Y') as test_date, count(i.record_id) as image_count
+from persons p, radiology_record r, pacs_images i
+where p.person_id = r.patient_id AND r.record_id = i.record_id
+group by CUBE(p.first_name, test_date);
+
+select r.test_type, trunc(r.test_date, 'IW') as test_date, count(i.record_id) as image_count
+from persons p, radiology_record r, pacs_images i
+where p.person_id = r.patient_id AND r.record_id = i.record_id
+group by CUBE(r.test_type, test_date);
+
+select  r.test_type, trunc(r.test_date, 'MM') as test_date, count(i.record_id) as image_count
+from persons p, radiology_record r, pacs_images i
+where p.person_id = r.patient_id AND r.record_id = i.record_id
+group by CUBE(r.test_type, test_date);
+
+select r.test_type, trunc(r.test_date, 'Y') as test_date, count(i.record_id) as image_count
+from persons p, radiology_record r, pacs_images i
+where p.person_id = r.patient_id AND r.record_id = i.record_id
+group by CUBE(r.test_type, test_date);
+
+select trunc(r.test_date, 'IW') as test_date, count(i.record_id) as image_count
+from persons p, radiology_record r, pacs_images i
+where p.person_id = r.patient_id AND r.record_id = i.record_id
+group by CUBE(test_date);
+
+select trunc(r.test_date, 'MM') as test_date, count(i.record_id) as image_count
+from persons p, radiology_record r, pacs_images i
+where p.person_id = r.patient_id AND r.record_id = i.record_id
+group by CUBE(test_date);
+
+select trunc(r.test_date, 'Y') as test_date, count(i.record_id) as image_count
+from persons p, radiology_record r, pacs_images i
+where p.person_id = r.patient_id AND r.record_id = i.record_id
+group by CUBE(test_date);
+
+select p.first_name, count(i.record_id) as image_count
+from persons p, radiology_record r, pacs_images i
+where p.person_id = r.patient_id AND r.record_id = i.record_id
+group by CUBE(p.first_name);
+
+select r.test_type, count(i.record_id) as image_count
+from persons p, radiology_record r, pacs_images i
+where p.person_id = r.patient_id AND r.record_id = i.record_id
+group by CUBE(r.test_type);
