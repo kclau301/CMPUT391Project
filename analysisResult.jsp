@@ -55,45 +55,39 @@
 
 	if(dType1.equals("1")) {
 		if(count > 1) {
-			select = select + ", p.person_id";
-			group = group + ", p.person_id";
+			select = select + ", ";
+			group = group + ", ";
 		}
-		else {
-			select = select + "p.person_id";
-			group = group + "p.person_id";
-		}
+		select = select + "p.person_id";
+		group = group + "p.person_id";
 		table = "<th>Patient ID</th> ";
 		count++;
 	}	
 
 	if(dType2.equals("1")) {
 		if(count > 1) {
-			select = select + ", r.test_type";
-			group = group + ", r.test_type";
+			select = select + ", ";
+			group = group + ", ";
 		}
-		else {
-			select = select + "r.test_type";
-			group = group + "r.test_type";
-		}
+		select = select + "r.test_type";
+		group = group + "r.test_type";
 		table = table + "<th>Test Type</th> ";
 		count ++;
 	}
 
 	if(dType3.equals("1")){
 		if(count > 1) {
-			select = select + ", trunc(r.test_date, '" + timePeriod + "') as test_date";
-			group = group + ", test_date";
+			select = select + ", ";
+			group = group + ", ";
 		}
-		else {
-			select = select + "trunc(r.test_date, '" + timePeriod + "') as test_date";
-			group = group + "test_date";
-		}
+		select = select + "trunc(r.test_date, '" + timePeriod + "') as test_date";
+		group = group + "test_date";
 		table = table + "<th>Test Date</th>";
 		count ++;
 	}
 
 	sql = select + ", count(i.record_id) as image_count from persons p, radiology_record r, pacs_images i where p.person_id = r.patient_id AND r.record_id = i.record_id " + group + ")"; 
-	table = table + "<th> Number of Images";
+	table = table + "<th> Number of Images </th>";
 	%>
 
 	<table border="1">
