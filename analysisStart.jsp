@@ -5,9 +5,9 @@
 <body>
 	<H1>Data Analysis</H1>
 	<form name="aResult" method="post" action="analysisResult.jsp">
-		Display Options: <input type="checkbox" name="displayType" size="30" value="patName"></input> Patient Name
-						<input type="checkbox" name="displayType" size="30" value="testType"></input> Test Type
-						<input type="checkbox" name="displayType" size="30" value="timePeriod"></input> Time Period
+		Display Options: <input type="checkbox" name="displayType" size="30" value="1"></input> Patient ID
+						<input type="checkbox" name="displayType2" size="30" value="1"></input> Test Type
+						<input type="checkbox" name="displayType3" size="30" value="1"></input> Time Period
 
 		<p>Order Time Period by:</p>
 		<input type="radio" name="TIMETYPE" value="week">Week<br> 
