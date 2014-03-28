@@ -1,3 +1,4 @@
+<!-- start up screen for the search module. user inputs search parameters and click the submit button to display the information that matches with the search criteria. admins can view every record, patients can only view their own, doctors can only view their own patients, and radiologist can onyl view their own patients -->
 <html>
 <head>
 <title>Search</title>

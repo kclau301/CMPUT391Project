@@ -1,3 +1,4 @@
+<!-- start up screen for the Report generation module. user inputs search parameters and click the submit button to display the patient information for user to view. Can only be accessed by an admin -->
 <html>
 <head>
 <title>Report Regeneration</title>
