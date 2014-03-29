@@ -26,7 +26,7 @@
 			SQLOrder = "rank desc";
 		}
 		//if there is no order option selected, display an error
-	} else {			
+	} else {
 		String error = "<p><b><font color=ff0000>You have not entered any search order specifications!</font></b></p>";
 		session.setAttribute("error", error);
 		response.sendRedirect("searchStart.jsp");
@@ -63,9 +63,9 @@
 		//both keyword and date are entered
 		if (kWord != "" && kTime1 != "" && kTime2 != "") {
 			sql = sql + ", ";
-			String[] wordList = kWord.split(" ");			//split the keyword value by space into an array for multiple keywords
+			String[] wordList = kWord.split(" "); //split the keyword value by space into an array for multiple keywords
 			int matchNum = 0;
-			for (int i = 0; i < wordList.length; i++) {		//for every keyword create a sql statement for it
+			for (int i = 0; i < wordList.length; i++) { //for every keyword create a sql statement for it
 				sql = sql + "6*score(" + Integer.toString(matchNum + 1)
 						+ ")+6*score(" + Integer.toString(matchNum + 2)
 						+ ")+3*score(" + Integer.toString(matchNum + 3)
@@ -106,7 +106,7 @@
 					sql = sql + "OR ";
 				countNum = countNum + 4;
 			}
-			sql = sql + "ORDER BY " + SQLOrder;				//order by the order sql string made above
+			sql = sql + "ORDER BY " + SQLOrder; //order by the order sql string made above
 		}
 
 		//no keyword entered

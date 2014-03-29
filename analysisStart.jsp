@@ -7,15 +7,17 @@
 	<H1>Data Analysis</H1>
 	<!-- Creates the checkboxes for the display -->
 	<form name="aResult" method="post" action="analysisResult.jsp">
-		Display Options: <input type="checkbox" name="displayType" size="30" value="1"></input> Patient ID
-						<input type="checkbox" name="displayType2" size="30" value="1"></input> Test Type
-						<input type="checkbox" name="displayType3" size="30" value="1"></input> Time Period
+		Display Options: <input type="checkbox" name="displayType" size="30"
+			value="1"></input> Patient ID <input type="checkbox"
+			name="displayType2" size="30" value="1"></input> Test Type <input
+			type="checkbox" name="displayType3" size="30" value="1"></input> Time
+		Period
 
 		<!-- Creates the radio buttons for the test date option -->
 		<p>Order Time Period by:</p>
-		<input type="radio" name="TIMETYPE" value="week">Week<br> 
-		<input type="radio" name="TIMETYPE" value="month">Month<br> 
-		<input type="radio" name="TIMETYPE" value="year">Year<br> 
+		<input type="radio" name="TIMETYPE" value="week">Week<br>
+		<input type="radio" name="TIMETYPE" value="month">Month<br>
+		<input type="radio" name="TIMETYPE" value="year">Year<br>
 		<input type="submit" name="ANALYZEDATA" value="Submit">
 	</form>
 

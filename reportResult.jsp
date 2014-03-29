@@ -15,10 +15,10 @@
 
 		//error checks to make sure all parameters have a value
 		if (iDiag == "" || iDate1 == "" || iDate2 == "") {
-		String error = "<p><b><font color=ff0000>You have not entered in all required parameters!</font></b></p>";
-		session.setAttribute("error", error);
-		response.sendRedirect("report.jsp");
-	}
+			String error = "<p><b><font color=ff0000>You have not entered in all required parameters!</font></b></p>";
+			session.setAttribute("error", error);
+			response.sendRedirect("report.jsp");
+		}
 		//connect to db
 		Database db = new Database();
 		db.connect();

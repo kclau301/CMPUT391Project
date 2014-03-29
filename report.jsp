@@ -23,15 +23,15 @@
 			</tr>
 		</table>
 	</form>
-	
-<%	
-	String error = (String) session.getAttribute("error");
+
+	<%
+		String error = (String) session.getAttribute("error");
 		if (error != null) {
 			out.println(error);
 			session.removeAttribute("error");
 		}
-%>
-	
+	%>
+
 </body>
 </html>
 

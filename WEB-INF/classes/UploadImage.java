@@ -55,7 +55,8 @@ public class UploadImage extends HttpServlet {
 		OutputStream regular_outstream = null;
 		
 		// Check if there is any input in the record id field
-		if (request.getParameter("recordID") == null || request.getParameter("recordID").equals("")) {
+		if (request.getParameter("recordID") == null
+				|| request.getParameter("recordID").equals("")) {
 			response_message = "<p><font color=ff0000>No ID entered!</font></p>";
 			session.setAttribute("msg", response_message);
 			response.sendRedirect("uploadImage.jsp");
