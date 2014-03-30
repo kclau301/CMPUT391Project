@@ -15,7 +15,7 @@
 
 			if (request.getParameter("SEARCHTYPE").equals("Users")) {
 				out.println("<H1><LEFT>User Management Search Menu</LEFT></H1>");
-				out.println("<form method=get action=updateUser.jsp>");
+				out.println("<form method=get action=updateEntry.jsp>");
 				out.println("Username: <input type=text name=USERNAME maxlength=20><br>");
 				out.println("<input type=submit name=SEARCH value=Search&nbsp;Users>");
 				out.println("<input type=hidden name=user value=Search&nbsp;Users>");
@@ -23,7 +23,7 @@
 
 			} else if (request.getParameter("SEARCHTYPE").equals("Persons")) {
 				out.println("<H1><LEFT>User Management Search Menu</LEFT></H1>");
-				out.println("<form method=get action=updateUser.jsp>");
+				out.println("<form method=get action=updateEntry.jsp>");
 				out.println("Person ID: <input type=text name=PERSONID maxlength=20><br>");
 				out.println("<input type=submit name=SEARCH value=Search&nbsp;Persons>");
 				out.println("<input type=hidden name=person value=Search&nbsp;Persons>");
@@ -32,7 +32,7 @@
 			} else if (request.getParameter("SEARCHTYPE").equals(
 					"FamilyDoctors")) {
 				out.println("<H1><LEFT>User Management Search Menu</LEFT></H1>");
-				out.println("<form method=get action=updateUser.jsp>");
+				out.println("<form method=get action=updateEntry.jsp>");
 				out.println("Doctor ID: <input type=text name=DOCID maxlength=20><br>");
 				out.println("Person ID: <input type=text name=PERSONID maxlength=20><br>");
 				out.println("<input type=submit name=SEARCH value=Search&nbsp;Family&nbsp;Doctors>");
