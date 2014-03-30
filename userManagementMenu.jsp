@@ -21,7 +21,7 @@
 			out.println("<input type=submit name=SEARCHUSER value=Search>");
 			out.println("</form>");
 
-			out.println("<form method=get action=createUser.jsp>");
+			out.println("<form method=get action=createEntry.jsp>");
 			out.println("<input type=radio name=CREATETYPE value=User>User<br>");
 			out.println("<input type=radio name=CREATETYPE value=Person>Person<br>");
 			out.println("<input type=radio name=CREATETYPE value=FamilyDoctor>Family Doctor<br>");
