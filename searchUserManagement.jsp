@@ -41,6 +41,7 @@
 
 			} else {
 				out.println("<H1><LEFT>User Management Menu</LEFT></H1>");
+				out.println("<H3><LEFT>Search for and update existing entry:</LEFT></H3>");
 				out.println("<form method=get action=searchUserManagement.jsp>");
 				out.println("<input type=radio name=SEARCHTYPE value=Users>Users<br>");
 				out.println("<input type=radio name=SEARCHTYPE value=Persons>Persons<br>");
