@@ -72,3 +72,11 @@ select r.test_type, count(i.record_id) as image_count
 from persons p, radiology_record r, pacs_images i
 where p.person_id = r.patient_id AND r.record_id = i.record_id
 group by CUBE(r.test_type);
+
+
+select concat(concat(p.first_name, ' '), p.last_name) as full_name, t.test_type, t.test_date, t.image_count 
+from (select p.person_id, r.test_type, trunc(r.test_date, 'IW') as test_date, count(i.record_id) as image_count
+    from persons p, radiology_record r, pacs_images i
+    where p.person_id = r.patient_id AND r.record_id = i.record_id
+    group by CUBE(p.person_id, r.test_type, test_date)) t, persons p
+where p.person_id = t.person_id;
