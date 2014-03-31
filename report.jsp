@@ -12,7 +12,7 @@
 				<td><input name="DiagnosisInput" type="text" size="30"></input></td>
 			</tr>
 			<tr>
-				<th>Date Range (Format: DD/MM/YY)</th>
+				<th>Date Range (Format: DD/MM/YYYY)</th>
 				<td><input name="DateInput1" type="text" size="30"></input></td>
 				<th>to</th>
 				<td><input name="DateInput2" type="text" size="30"></input></td>

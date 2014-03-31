@@ -6,6 +6,10 @@
 </HEAD>
 
 <BODY>
+	<div style="float: right">
+		<a href="help.html">Help</a>
+		<a href="logout.jsp">Logout</a>
+	</div>
 	<!--A simple example to demonstrate how to use JSP to 
     connect and query a database. 
     @author  Hong-Yu Zhang, University of Alberta

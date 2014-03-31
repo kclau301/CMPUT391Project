@@ -64,7 +64,7 @@
 			out.println("<td><input type=text name=USERID maxlength=20></td></tr>");
 			out.println("<tr><th>Password:</th>");
 			out.println("<td><input type=password name=PASSWD maxlength=20></td></tr>");
-			out.println("<tr><td><input type=submit name=bSubmit value=Submit></td></tr>");
+			out.println("<tr><td><input type=submit name=bSubmit value=Login></td></tr>");
 			out.println("</table>");
 			String invalid = (String) session.getAttribute("error");
 			if (invalid != null) {

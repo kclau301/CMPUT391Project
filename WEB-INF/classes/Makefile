@@ -1,11 +1,6 @@
 JC = javac
 CLASSPATH = -classpath ../lib/ojdbc6.jar:../lib/commons-fileupload-1.0.jar:../lib/servlet-api.jar
 SOURCEPATH = -sourcepath .:db
-#CLASSES = \
-#		db/Database.java \
-#		GetOnePic.java \
-#		ModifyAccountCheck.java \
-#		UploadImage.java
 
 default: Database.class GetOnePic.class ModifyAccountCheck.class UploadImage.class
 
