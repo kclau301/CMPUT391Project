@@ -37,11 +37,11 @@
 		String timePeriod = "";
 		if (dType3.equals("1")) {
 			if (request.getParameter("TIMETYPE") != null) {
-				if (request.getParameter("TIMETYPE").equals("Week")) {
+				if (request.getParameter("TIMETYPE").equals("week")) {
 					timePeriod = "IW";
-				} else if (request.getParameter("TIMETYPE").equals("Month")) {
+				} else if (request.getParameter("TIMETYPE").equals("month")) {
 					timePeriod = "MM";
-				} else if (request.getParameter("TIMETYPE").equals("Year")) {
+				} else if (request.getParameter("TIMETYPE").equals("year")) {
 					timePeriod = "Y";
 				}
 			}
@@ -100,6 +100,7 @@
 		sql = select
 				+ ", count(i.record_id) as image_count from persons p, radiology_record r, pacs_images i where p.person_id = r.patient_id AND r.record_id = i.record_id "
 				+ group + ")";
+		String sql2 = "select p.person_id, r.test_type, trunc(r.test_date, 'IW') as test_date, count(i.record_id) as image_count from persons p, radiology_record r, pacs_images i where p.person_id = r.patient_id AND r.record_id = i.record_id group by CUBE(p.person_id, r.test_type, test_date)";
 		//make the HTML table headers
 		table = table + "<th> Number of Images </th>";
 	%>

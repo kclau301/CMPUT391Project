@@ -22,12 +22,11 @@
 
 				String username = request.getParameter("USERNAME");
 				String password = request.getParameter("PASSWORD");
-				String classStr = request.getParameter("CLASS");
 				String personID = request.getParameter("PERSONID");
 
 				String updateStr = "UPDATE users SET password='" + password
-						+ "', class='" + classStr + "', person_id='"
-						+ personID + "' WHERE user_name='" + username + "'";
+						+ "', person_id='" + personID 
+						+ "' WHERE user_name='" + username + "'";
 
 				try {
 					stmt = conn.createStatement();

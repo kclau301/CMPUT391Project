@@ -22,7 +22,7 @@
 				ResultSet rset = null;
 				String username = request.getParameter("USERNAME");
 
-				String sqlStatement = "select password, class, person_id from users where user_name = '"
+				String sqlStatement = "select password, person_id from users where user_name = '"
 						+ username + "'";
 
 				try {
@@ -31,7 +31,6 @@
 
 					rset.next();
 					String password = (rset.getString("password"));
-					String classStr = (rset.getString("class"));
 					String personID = (rset.getString("person_id"));
 
 					out.println("<H1><LEFT>User Update</LEFT></H1>");
@@ -39,8 +38,6 @@
 					out.println("Username: " + username + "<br>");
 					out.println("Password: <input type=text name=PASSWORD value="
 							+ password + "><br>");
-					out.println("Class: <input type=text name=CLASS value="
-							+ classStr + "><br>");
 					out.println("Person ID: <input type=text name=PERSONID value="
 							+ personID + "><br>");
 					out.println("<input type=submit name=update value=Update&nbsp;Users>");
