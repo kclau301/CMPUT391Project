@@ -9,8 +9,38 @@
 		<u>Help and User Documentation</u>
 	</h1>
 
+	<table>
+		<tr>
+			<th align="left">
+				<h3 style="padding: 0; margin: 0">Contents:</h3>
+			</th>
+		</tr>
+		<tr>
+			<td><a href="#install">Installation Guide</a></td>
+		</tr>
+		<tr>
+			<td><a href="#login">Login Module</a></td>
+		</tr>
+		<tr>
+			<td><a href="#user_management">User Management Module</a></td>
+		</tr>
+		<tr>
+			<td><a href="#report_generating">Report Generating Module</a></td>
+		</tr>
+		<tr>
+			<td><a href="#upload">Uploading Module</a></td>
+		</tr>
+		<tr>
+			<td><a href="#search">Search Module</a></td>
+		</tr>
+		<tr>
+			<td><a href="#data_analysis">Data Analysis Module</a></td>
+		</tr>
+	</table>
+
 	<!-- Installation Guide -->
-	<h2>
+	<br>
+	<h2 id="install">
 		<u>Installation Guide</u>
 	</h2>
 	<ol>
@@ -29,111 +59,325 @@
 	</ol>
 
 	<!-- Login Module -->
-	<h2>
+	<br>
+	<h2 id="login">
 		<u>Login Module</u>
 	</h2>
-	<h3>Purpose:</h3>
-	<p>Allow all users to login to the system with proper privileges,
-		and to modify their personal information and/or the password.</p>
-	<h3>Use:</h3>
-	<ul>
-		<li><b>To login:</b>
-			<ol>
-				<li>Enter a username and password</li>
-				<li>Click "Login"</li>
-			</ol> <br></li>
-		<li><b>To modify personal information:</b>
-			<ol>
-				<li>From the main menu, click "Modify Account"</li>
-				<li>Edit the information in any of the fields</li>
-				<li>When done, click "Save Changes"</li>
-			</ol></li>
-	</ul>
-	<h3>Restrictions:</h3>
-	<p>
-		This module can only be accessed by users with an administrator
-		account. <br> The report generating option will not appear in the
-		menu if the stated requirement is not met.
-	</p>
-	<h3>How it works:</h3>
-	<p>Report.html contains text fields where the diagnosis string, and
-		a date range strings are entered. These variables are passed to
-		reportResult.jsp as iDiag, iDate1, and iDate2 respectively. When the
-		submit button is pressed the page is redirected to reportResult.jsp.
-		If any of the text fields are left empty, an error message will appear
-		prompting the user to fill in all fields. reportResult.jsp retrieves
-		the variables iDiag, iDate1, and iDate2 to be used in the output and
-		in the SQL statement. The database is connected to and the SQL
-		statement is ran to get the rows that match the specifications of the
-		specified variables. Each row is printed out into a HTML table for the
-		user to view.</p>
+	<div>
+		<h3>Purpose:</h3>
+		<p>Allow all users to login to the system with proper privileges,
+			and to modify their personal information and/or the password.</p>
+	</div>
+	<div>
+		<h3>Use:</h3>
+		<ul>
+			<li><b>To login:</b>
+				<ol>
+					<li>Enter a username and password</li>
+					<li>Click "Login"</li>
+				</ol> <br></li>
+			<li><b>To modify personal information:</b>
+				<ol>
+					<li>From the main menu, click "Modify Account"</li>
+					<li>Edit the information in any of the fields</li>
+					<li>When done, click "Save Changes"</li>
+				</ol></li>
+		</ul>
+	</div>
+	<div>
+		<h3>Restrictions:</h3>
+		<p>
+			This module can only be accessed by users with an administrator
+			account. <br> The report generating option will not appear in
+			the menu if the stated requirement is not met.
+		</p>
+	</div>
+	<div>
+		<h3>How it works:</h3>
+		<p>Report.html contains text fields where the diagnosis string,
+			and a date range strings are entered. These variables are passed to
+			reportResult.jsp as iDiag, iDate1, and iDate2 respectively. When the
+			submit button is pressed the page is redirected to reportResult.jsp.
+			If any of the text fields are left empty, an error message will
+			appear prompting the user to fill in all fields. reportResult.jsp
+			retrieves the variables iDiag, iDate1, and iDate2 to be used in the
+			output and in the SQL statement. The database is connected to and the
+			SQL statement is ran to get the rows that match the specifications of
+			the specified variables. Each row is printed out into a HTML table
+			for the user to view.</p>
+	</div>
 
 	<!-- User Management Module -->
-	<h2>
+	<br>
+	<h2 id="user_management">
 		<u>User Management Module</u>
 	</h2>
+	<div>
+		<h3>Purpose:</h3>
+		<p>User management gives an administrator the ability to create
+			new user, person and family doctor records as well as update existing
+			records.</p>
+	</div>
+	<div>
+		<h3>Use:</h3>
+		<p>To create:</p>
+		<ol>
+			<li>Select which type of entry you wish to create (user, person
+				or family doctor)</li>
+			<li>Click the create button to continue</li>
+		</ol>
+		<ul>
+			<li>For User entry:
+				<ol>
+					<li>Enter username in the first text field</li>
+					<li>Enter password in the second text field</li>
+					<li>Enter the class of the user in the third text field (a for
+						administrator, p for patient, d for doctor or r for radiologist)</li>
+					<li>Enter the person ID for the user of this account</li>
+					<li>Click the create button</li>
+				</ol>
+			</li>
+		</ul>
+		<ul>
+			<li>For Person entry:
+				<ol>
+					<li>Enter the first name of the person in the first text field</li>
+					<li>Enter the last name of the person in the second text field</li>
+					<li>Enter the address of the person in the third text field</li>
+					<li>Enter the email address of the person in the fourth text
+						field</li>
+					<li>Enter the phone number of the person in the fifth text
+						field</li>
+					<li>Click the create button</li>
+				</ol>
+			</li>
+		</ul>
+		<ul>
+			<li>For Family Doctor entry:
+				<ol>
+					<li>Enter the doctor ID of the doctor in the first text field</li>
+					<li>Enter the patient ID of the patient in the second text
+						field</li>
+					<li>Click the create button</li>
+				</ol>
+			</li>
+		</ul>
+		<p>To update:</p>
+		<ol>
+			<li>Select which type of entry you wish to update (user, person
+				or family doctor)</li>
+			<li>Click the create button to continue</li>
+		</ol>
+		<ul>
+			<li>For User update:
+				<ol>
+					<li>Enter username whose information you wish to update</li>
+					<li>Click the Search Users button</li>
+					<li>If you wish to change the password, edit the text in the
+						first text field</li>
+					<li>If you wish to change the class, edit the text in the
+						second text field</li>
+					<li>If you wish to change the person ID, edit the text in the
+						third text field</li>
+					<li>Click the Update Users button</li>
+				</ol>
+			</li>
+		</ul>
+		<ul>
+			<li>For Person update:
+				<ol>
+					<li>Enter person ID whose information you wish to update</li>
+					<li>Click the Search Persons button</li>
+					<li>If you wish to change the first name, edit the text in the
+						first text field</li>
+					<li>If you wish to change the last name, edit the text in the
+						second text field</li>
+					<li>If you wish to change the address, edit the text in the
+						third text field</li>
+					<li>If you wish to change the email, edit the text in the
+						fourth text field</li>
+					<li>If you wish to change the phone number, edit the text in
+						the fifth text field</li>
+					<li>Click the Update Persons button</li>
+				</ol>
+			</li>
+		</ul>
+		<ul>
+			<li>For Family Doctor update:
+				<ol>
+					<li>Enter patient ID and doctor ID whose information you wish
+						to update</li>
+					<li>Click the Search Family Doctors button</li>
+					<li>If you wish to change the doctor ID, edit the text in the
+						first text field</li>
+					<li>Click the Update Family Doctor button</li>
+				</ol>
+			</li>
+		</ul>
+	</div>
+	<div>
+		<h3>Restrictions:</h3>
+		<p>This module can only be accessed by users with an administrator
+			account. The user management option will not appear in the menu if
+			the stated requirement is not met.</p>
+	</div>
+	<div>
+		<h3>How it works:</h3>
+		<p>UserManagementMenu.jsp contains two sets of radio buttons where
+			the first set corresponds to searching for and updating existing
+			entries and the second correspond to creating new entries. If the
+			search button is pressed, it directs the user to the
+			searchUserManagement.jsp page, where, depending on the selection from
+			the previous page, has a text field asking for a username to search
+			users, a person ID to search persons or a patient ID and a doctor ID
+			to search family doctors. When the search button is clicked on this
+			page, it directs you to updateEntry.jsp, where the variables from the
+			previous page are passed and used to find the record matching the
+			inputted information. The text fields present, which change depending
+			on if you are looking for a user, person or family doctor to update,
+			have the information fields filled in from the information found in
+			the record matching the search term. From here, the user can change
+			whatever information they wish to and when they are finished, click
+			the update button to commit the changes by passing the variables to
+			updateSubmit.jsp and updating the table. If the create button is
+			pressed, it directs the user to the createEntry.jsp page, where,
+			depending on the selection from the previous page, has text fields
+			asking for relevant data to either create a user, person or family
+			doctor. After this data is entered and the create button is clicked,
+			the user is directed to the createSubmit.jsp page where the variables
+			from the previous page are passed to and used to create a new entry
+			in the table selected.</p>
+	</div>
 
 	<!-- Report Generating Module -->
-	<h2>
+	<br>
+	<h2 id="report_generating">
 		<u>Report Generating Module</u>
 	</h2>
-	<h3>Purpose:</h3>
-	<p>Report generating gives an administrator the ability to generate
-		a list of patients that match the parameters entered.</p>
-	<h3>Use:</h3>
-	<ol>
-		<li>Enter a diagnosis result (e.g. cancer) desired to be found in
-			the first text field (Note: this is not case sensitive)</li>
-		<li>Enter a date in the format "DD/MM/YYYY" in the second text
-			field. This will be the starting boundary for the desired time period</li>
-		<li>Enter a date in the format "DD/MM/YYYY" in the third text
-			field. This will be the ending boundary for the desired time period</li>
-		<li>Click the submit button</li>
-	</ol>
+	<div>
+		<h3>Purpose:</h3>
+		<p>Report generating gives an administrator the ability to
+			generate a list of patients that match the parameters entered.</p>
+	</div>
+	<div>
+		<h3>Use:</h3>
+		<ol>
+			<li>Enter a diagnosis result (e.g. cancer) desired to be found
+				in the first text field (Note: this is not case sensitive)</li>
+			<li>Enter a date in the format "DD/MM/YYYY" in the second text
+				field. This will be the starting boundary for the desired time
+				period</li>
+			<li>Enter a date in the format "DD/MM/YYYY" in the third text
+				field. This will be the ending boundary for the desired time period</li>
+			<li>Click the submit button</li>
+		</ol>
+		<p>The results matching the parameters requested will be displayed
+			on the page in a table. The table is ordered in alphabetical order in
+			reference to the last name of the patient.</p>
+	</div>
+	<div>
+		<h3>Restrictions:</h3>
+		<p>This module can only be accessed by users with an administrator
+			account. The report generating option will not appear in the menu if
+			the stated requirement is not met.</p>
+	</div>
+	<div>
+		<h3>How it works:</h3>
+		<p>Report.html contains text fields where the diagnosis string,
+			and a date range strings are entered. These variables are passed to
+			reportResult.jsp as iDiag, iDate1, and iDate2 respectively. When the
+			submit button is pressed the page is redirected to reportResult.jsp.
+			If any of the text fields are left empty, an error message will
+			appear prompting the user to fill in all fields. reportResult.jsp
+			retrieves the variables iDiag, iDate1, and iDate2 to be used in the
+			output and in the SQL statement. The database is connected to and the
+			SQL statement is ran to get the rows that match the specifications of
+			the specified variables. Each row is printed out into a HTML table
+			for the user to view.</p>
+	</div>
 
 	<!-- Uploading Module -->
-	<h2>
+	<br>
+	<h2 id="upload">
 		<u>Uploading Module</u>
 	</h2>
-	<h3>Purpose:</h3>
-	<p>This module will be used by radiologists to first enter a
-		radiology record, and then to upload medical images into the radiology
-		record.</p>
-	<h3>Use:</h3>
-	<ol>
-		<li>Enter a radiology record ID</li>
-		<li>Click "Browse" and select an image to upload</li>
-		<li>Click "Upload"</li>
-	</ol>
-	<h3>Restrictions:</h3>
-	<p>This module can only be accessed by users with a radiologist
-		account.</p>
+	<div>
+		<h3>Purpose:</h3>
+		<p>This module will be used by radiologists to first enter a
+			radiology record, and then to upload medical images into the
+			radiology record.</p>
+	</div>
+	<div>
+		<h3>Use:</h3>
+		<ol>
+			<li>Enter a radiology record ID</li>
+			<li>Click "Browse" and select an image to upload</li>
+			<li>Click "Upload"</li>
+		</ol>
+	</div>
+	<div>
+		<h3>Restrictions:</h3>
+		<p>This module can only be accessed by users with a radiologist
+			account.</p>
+	</div>
 
 	<!-- Search Module -->
-	<h2>
+	<br>
+	<h2 id="search">
 		<u>Search Module</u>
 	</h2>
-	<h3>Purpose:</h3>
-	<p>This module will be used by all the registered users to search
-		the database for a list of relevant radiology records and to view
-		medical images with the zoom-in facility.</p>
-	<h3>Use:</h3>
-	<ol>
-		<li>Enter either a keyword(s) or a time period range</li>
-		<li>Select one of the sorting methods</li>
-		<li>Click "Search"</li>
-		<li>To view larger images, click on an image thumbnail</li>
-		<li>To zoom in/out, click on the image itself</li>
-	</ol>
-	<h3>Restrictions:</h3>
-	<p>A patient can only view his/her own records; a doctor can only
-		view records of their patients; a radiologist can only review records
-		conducted by oneself; and an administrator can view any records.</p>
+	<div>
+		<h3>Purpose:</h3>
+		<p>This module will be used by all the registered users to search
+			the database for a list of relevant radiology records and to view
+			medical images with the zoom-in facility.</p>
+	</div>
+	<div>
+		<h3>Use:</h3>
+		<ol>
+			<li>Enter either a keyword(s) or a time period range</li>
+			<li>Select one of the sorting methods</li>
+			<li>Click "Search"</li>
+			<li>To view larger images, click on an image thumbnail</li>
+			<li>To zoom in/out, click on the image itself</li>
+		</ol>
+	</div>
+	<div>
+		<h3>Restrictions:</h3>
+		<p>A patient can only view his/her own records; a doctor can only
+			view records of their patients; a radiologist can only review records
+			conducted by oneself; and an administrator can view any records.</p>
+	</div>
 
 	<!-- Data Analysis Module -->
-	<h2>
+	<br>
+	<h2 id="data_analysis">
 		<u>Data Analysis Module</u>
 	</h2>
+	<div>
+		<h3>Purpose:</h3>
+		<p>This module serves to create an OLAP report for the user to
+			view. The user can choose to view a report of the number of images
+			associated with a record with any combination of patient ID, the test
+			type or the test date.</p>
+	</div>
+	<div>
+		<h3>Use:</h3>
+		<ol>
+			<li>Select any combinations of the check boxes to view in the
+				results</li>
+			<li>If "Test Date" is selected, select a date sorting option
+				using the radio buttons (if not, skip this step)</li>
+			<li>Click "Submit"</li>
+		</ol>
+	</div>
+	<div>
+		<h3>Restrictions:</h3>
+		<p>This module is only to be used by an administrator and cannot
+			be accessed if the user does not meet this requirement</p>
+	</div>
+	<br>
+	<br>
 
 </body>
 </html>
