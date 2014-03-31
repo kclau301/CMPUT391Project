@@ -5,65 +5,111 @@
 <title>Radiology Information System Help</title>
 </head>
 <body>
-	<h1><u>Help and User Documentation</u></h1>
-	<h2><u>Installation Guide</u></h2>
+	<h1>
+		<u>Help and User Documentation</u>
+	</h1>
+	<h2>
+		<u>Installation Guide</u>
+	</h2>
 	<ol>
-		<li>Extract file contents into the catalina/webapps/CMPUT391 directory.</li>
+		<li>Extract file contents into the catalina/webapps/CMPUT391
+			directory.</li>
 		<li>Open a new terminal in the same directory.</li>
 		<li>Change directory to ./WEB-INF/classes</li>
 		<li>Compile the servlets by typing <kbd>make</kbd></li>
 		<li>Start tomcat by typing <kbd>starttomcat</kbd></li>
-		<li>In a browser, enter the following link: <kbd>http://ui???.cs.ualberta.ca:<your-first-port-number>/CMPUT391/login.jsp</kbd>
-		<br>ui??? is the computer you are working on, it should be one of the undergrad workstations (you can type 'hostname' in the terminal to get the hostname of the system).</li>
+		<li>In a browser, enter the following link: <kbd>
+				http://ui???.cs.ualberta.ca:&ltyour-first-port-number&gt/CMPUT391/login.jsp
+			</kbd> <br>ui??? is the computer you are working on, it should be one
+			of the undergrad workstations (you can type 'hostname' in the
+			terminal to get the hostname of the system).
+		</li>
 	</ol>
-	
-	<h2><u>Login Module</u></h2>
+
+	<h2>
+		<u>Login Module</u>
+	</h2>
 	<h3>Purpose:</h3>
-	<p>Allow all users to login to the system with proper privileges, and to modify their personal information and/or the password.</p>
+	<p>Allow all users to login to the system with proper privileges,
+		and to modify their personal information and/or the password.</p>
 	<h3>Use:</h3>
 	<ul>
 		<li><b>To login:</b>
 			<ol>
 				<li>Enter a username and password</li>
 				<li>Click "Login"</li>
-			</ol>
-		<br>
-		</li>
+			</ol> <br></li>
 		<li><b>To modify personal information:</b>
 			<ol>
 				<li>From the main menu, click "Modify Account"</li>
 				<li>Edit the information in any of the fields</li>
 				<li>When done, click "Save Changes"</li>
-			</ol>
-		</li>
+			</ol></li>
 	</ul>
 	<h3>Restrictions:</h3>
 	<p>
-		This module can only be accessed by users with an administrator account.
-		<br>
-		The report generating option will not appear in the menu if the stated requirement is not met.
+		This module can only be accessed by users with an administrator
+		account. <br> The report generating option will not appear in the
+		menu if the stated requirement is not met.
 	</p>
 	<h3>How it works:</h3>
-	<p>Report.html contains text fields where the diagnosis string, and a date range strings are entered. These variables are passed to reportResult.jsp as iDiag, iDate1, and iDate2 respectively. When the submit button is pressed the page is redirected to reportResult.jsp. If any of the text fields are left empty, an error message will appear prompting the user to fill in all fields. reportResult.jsp retrieves the variables iDiag, iDate1, and iDate2 to be used in the output and in the SQL statement. The database is connected to and the SQL statement is ran to get the rows that match the specifications of the specified variables. Each row is printed out into a HTML table for the user to view.</p>
-	
-	<h2><u>User Management Module</u></h2>
-	
-	<h2><u>Report Generating Module</u></h2>
+	<p>Report.html contains text fields where the diagnosis string, and
+		a date range strings are entered. These variables are passed to
+		reportResult.jsp as iDiag, iDate1, and iDate2 respectively. When the
+		submit button is pressed the page is redirected to reportResult.jsp.
+		If any of the text fields are left empty, an error message will appear
+		prompting the user to fill in all fields. reportResult.jsp retrieves
+		the variables iDiag, iDate1, and iDate2 to be used in the output and
+		in the SQL statement. The database is connected to and the SQL
+		statement is ran to get the rows that match the specifications of the
+		specified variables. Each row is printed out into a HTML table for the
+		user to view.</p>
+
+	<h2>
+		<u>User Management Module</u>
+	</h2>
+
+	<h2>
+		<u>Report Generating Module</u>
+	</h2>
 	<h3>Purpose:</h3>
-	<p>Report generating gives an administrator the ability to generate a list of patients that match the parameters entered.</p>
+	<p>Report generating gives an administrator the ability to generate
+		a list of patients that match the parameters entered.</p>
 	<h3>Use:</h3>
 	<ol>
-		<li>Enter a diagnosis result (e.g. cancer) desired to be found in the first text field (Note: this is not case sensitive)</li>
-		<li>Enter a date in the format "DD/MM/YYYY" in the second text field. This will be the starting boundary for the desired time period</li>
-		<li>Enter a date in the format "DD/MM/YYYY" in the third text field. This will be the ending boundary for the desired time period</li>
-		<li>Click the submit button</li>		
+		<li>Enter a diagnosis result (e.g. cancer) desired to be found in
+			the first text field (Note: this is not case sensitive)</li>
+		<li>Enter a date in the format "DD/MM/YYYY" in the second text
+			field. This will be the starting boundary for the desired time period</li>
+		<li>Enter a date in the format "DD/MM/YYYY" in the third text
+			field. This will be the ending boundary for the desired time period</li>
+		<li>Click the submit button</li>
 	</ol>
-	
-	<h2><u>Uploading Module</u></h2>
-	
-	<h2><u>Search Module</u></h2>
-	
-	<h2><u>Data Analysis Module</u></h2>
-	
+
+	<h2>
+		<u>Uploading Module</u>
+	</h2>
+	<h3>Purpose:</h3>
+	<p>This module will be used by radiologists to first enter a
+		radiology record, and then to upload medical images into the radiology
+		record..</p>
+	<h3>Use:</h3>
+	<ol>
+		<li>Enter a radiology record ID</li>
+		<li>Click "Browse" and select an image to upload</li>
+		<li>Click "Upload"</li>
+	</ol>
+	<h3>Restrictions:</h3>
+	<p>This module can only be accessed by users with a radiologist
+		account.</p>
+
+	<h2>
+		<u>Search Module</u>
+	</h2>
+
+	<h2>
+		<u>Data Analysis Module</u>
+	</h2>
+
 </body>
 </html>
