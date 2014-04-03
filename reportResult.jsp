@@ -28,7 +28,7 @@
 		ResultSet rset = null;
 
 		//sql statement to obtain the patient and radiology record info
-		String sql = "select p.last_name, p.first_name, p.address, p.phone, r.test_date from persons p, radiology_record r where p.person_id = r.patient_id AND LOWER('"
+		String sql = "select p.last_name, p.first_name, p.address, p.phone, r.test_date from persons p, radiology_record r where p.person_id = r.patient_id AND ('"
 				+ iDiag
 				+ "') = r.diagnosis AND r.test_date between to_date('"
 				+ iDate1

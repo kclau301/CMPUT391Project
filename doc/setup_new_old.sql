@@ -82,3 +82,18 @@ CREATE TABLE pacs_images (
    PRIMARY KEY(record_id,image_id),
    FOREIGN KEY(record_id) REFERENCES radiology_record
 );
+
+INSERT INTO persons (person_id, first_name, last_name, address, email, phone) VALUES (1, 'David', 'Pho', 'Vietnam', 'phoboy@ualberta.ca', '7800000000');
+INSERT INTO users (user_name, password, class, person_id) VALUES ('me', 'you', 'a', 1);
+
+
+INSERT INTO persons (person_id, first_name, last_name, address, email, phone) VALUES (2, 'Kevin', 'Lau', '123 Street', 'fakeemail@mail.com', '7805553333');
+
+
+INSERT INTO persons (person_id, first_name, last_name, address, email, phone) VALUES (3, 'Blah', 'McBlaher', '143 Street', 'realgmail@mail.com', '7803253334');
+
+INSERT INTO radiology_record (record_id, patient_id, test_date, diagnosis) VALUES (23, 1, to_date('2013', 'YYYY'), 'cancer');
+
+
+INSERT INTO radiology_record (record_id, patient_id, test_date, diagnosis) VALUES (24, 2, to_date('2013', 'YYYY'), 'cancer');
+

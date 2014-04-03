@@ -30,7 +30,7 @@
 		String error = "<p><b><font color=ff0000>You have not entered any search order specifications!</font></b></p>";
 		session.setAttribute("error", error);
 		response.sendRedirect("searchStart.jsp");
-	}
+	}	
 %>
 
 <HTML>
@@ -92,7 +92,7 @@
 			//creates sql statement for every key word to match with the score function 
 			int countNum = 0;
 			for (int i = 0; i < wordList.length; i++) {
-				sql = sql + class_id + "contains(r.diagnosis, '"
+				sql = sql + class_id + "(contains(r.diagnosis, '"
 						+ wordList[i] + "', "
 						+ Integer.toString(countNum + 3)
 						+ ") > 0 OR contains(r.description, '"
@@ -101,7 +101,7 @@
 						+ ") > 0 OR contains(p.first_name, '" + wordList[i]
 						+ "', " + Integer.toString(countNum + 1)
 						+ ") > 0 OR contains(p.last_name, '" + wordList[i]
-						+ "', " + Integer.toString(countNum + 2) + ") > 0 ";
+						+ "', " + Integer.toString(countNum + 2) + ") > 0 )";
 				if (i != wordList.length - 1)
 					sql = sql + "OR ";
 				countNum = countNum + 4;
@@ -148,7 +148,7 @@
 
 			int countNum = 0;
 			for (int i = 0; i < wordList.length; i++) {
-				sql = sql + class_id + "contains(r.diagnosis, '"
+				sql = sql + class_id + "(contains(r.diagnosis, '"
 						+ wordList[i] + "', "
 						+ Integer.toString(countNum + 3)
 						+ ") > 0 OR contains(r.description, '"
@@ -157,7 +157,7 @@
 						+ ") > 0 OR contains(p.first_name, '" + wordList[i]
 						+ "', " + Integer.toString(countNum + 1)
 						+ ") > 0 OR contains(p.last_name, '" + wordList[i]
-						+ "', " + Integer.toString(countNum + 2) + ") > 0 ";
+						+ "', " + Integer.toString(countNum + 2) + ") > 0 )";
 				if (i != wordList.length - 1)
 					sql = sql + "OR ";
 				countNum = countNum + 4;
@@ -205,17 +205,17 @@
 
 				//while there are rows to print, print them into the related column
 				while (rset != null && rset.next()) {
-					String recordID = (rset.getString(1));
-					String patientID = (rset.getString(2));
-					String doctorID = (rset.getString(3));
-					String radiologist = (rset.getString(4));
-					String testType = (rset.getString(5));
-					String pDate = (rset.getString(6));
-					String tDate = (rset.getString(7));
-					String diag = (rset.getString(8));
-					String description = (rset.getString(9));
-					String fName = (rset.getString(10));
-					String lName = (rset.getString(11));
+					String recordID = (rset.getString("record_id"));
+					String patientID = (rset.getString("patient_id"));
+					String doctorID = (rset.getString("doctor_id"));
+					String radiologist = (rset.getString("radiologist_id"));
+					String testType = (rset.getString("TEST_TYPE"));
+					String pDate = (rset.getString("PRESCRIBING_DATE"));
+					String tDate = (rset.getString("TEST_DATE"));
+					String diag = (rset.getString("DIAGNOSIS"));
+					String description = (rset.getString("description"));
+					String fName = (rset.getString("first_name"));
+					String lName = (rset.getString("last_name"));
 
 					out.println("<tr>");
 					out.println("<td>" + lName + "</td>");
